@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cashcraft",
+  "name": "CashCraft",
+  "description": "Add a physical currency to your game",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["TehStoneMan"],
+  "credits": "Created by TehStoneMan",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

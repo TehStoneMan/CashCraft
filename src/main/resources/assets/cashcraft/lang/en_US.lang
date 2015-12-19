@@ -1,0 +1,19 @@
+//en_US Language file for CashCraft mod
+
+item.cashCraft.coin.one.name=1 coin
+item.cashCraft.coin.two.name=2 coin
+item.cashCraft.coin.four.name=4 coin
+item.cashCraft.coin.eight.name=8 coin
+item.cashCraft.coin.sixteen.name=16 coin
+item.cashCraft.coin.thirtyTwo.name=32 coin
+item.cashCraft.coin.sixtyFour.name=64 coin
+item.cashCraft.note.one.name=1 banknote
+item.cashCraft.note.two.name=2 banknote
+item.cashCraft.note.four.name=4 banknote
+item.cashCraft.note.eight.name=8 banknote
+item.cashCraft.note.sixteen.name=16 banknote
+item.cashCraft.note.thirtyTwo.name=32 banknote
+item.cashCraft.note.sixtyFour.name=64 banknote
+item.cashCraft.note.oneTwoEight.name=128 banknote
+
+itemGroup.cashCraft=CashCraft
