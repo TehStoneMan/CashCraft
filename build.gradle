@@ -24,11 +24,11 @@ apply plugin: 'forge'
 
 archivesBaseName = "CashCraft"
 group = "io.github.tehstoneman.cashcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-version = "[1.7.10]-1.0"
+version = "[1.7.10]-1.1"
 
 minecraft
 {
-    version = "1.7.10-10.13.2.1291"
+    version = "1.7.10-10.13.4.1445-1.7.10"
 	if( file('../run').exists() )
 	{
 		assetDir = "../run/assets"

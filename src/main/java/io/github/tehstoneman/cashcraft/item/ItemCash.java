@@ -1,7 +1,6 @@
 package io.github.tehstoneman.cashcraft.item;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
-import io.github.tehstoneman.cashcraft.ModInfo;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class ItemCash extends Item
 	{
 		setHasSubtypes( true );
 		setMaxDamage( 0 );
-		//setCreativeTab( CreativeTabs.tabMisc );
+		// setCreativeTab( CreativeTabs.tabMisc );
 	}
 
 	@Override
@@ -39,7 +38,7 @@ public class ItemCash extends Item
 		final int metadata = itemStack.getItemDamage();
 		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
 		return super.getUnlocalizedName() + "." + values.getName();
-		//return "item." + ModInfo.MODID + "." + values.getName();
+		// return "item." + ModInfo.MODID + "." + values.getName();
 	}
 
 	@Override
@@ -52,6 +51,18 @@ public class ItemCash extends Item
 			final ItemStack subItemStack = new ItemStack( item, 1, metadata );
 			subItems.add( subItemStack );
 		}
+	}
+
+	public int getValue()
+	{
+		return this.getValue( new ItemStack( this ) );
+	}
+
+	public int getValue( ItemStack itemStack )
+	{
+		final int metadata = itemStack.getItemDamage();
+		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
+		return values.getValue();
 	}
 
 	@Override
@@ -84,7 +95,7 @@ public class ItemCash extends Item
 		NOTE_SIXTEEN(		11,  2048, "note.sixteen",		"note_016" ),
 		NOTE_THIRTY_TWO(	12,  4096, "note.thirtyTwo",	"note_032" ),
 		NOTE_SIXTY_FOUR(	13,  8192, "note.sixtyFour",	"note_064" ),
-		NOTE_ONE_TWO_EIGHT(	14, 16384, "note.oneTwoEight",	"note_128"	);		// @formatter:on
+		NOTE_ONE_TWO_EIGHT(	14, 16384, "note.oneTwoEight",	"note_128" );		// @formatter:on
 
 		private int								meta;
 		private int								value;

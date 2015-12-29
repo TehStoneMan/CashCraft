@@ -1,7 +1,7 @@
 package io.github.tehstoneman.cashcraft;
 
-import net.minecraftforge.common.MinecraftForge;
-import io.github.tehstoneman.cashcraft.event.EventManager;
+import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
+import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.proxies.CommonProxy;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 import cpw.mods.fml.common.Mod;
@@ -23,22 +23,28 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 //@formatter:on
 public class CashCraft
 {
-	public static ModMetadata			modMetadata;
+	public static ModMetadata	modMetadata;
 
 	@Instance( value = ModInfo.MODID )
-	public static CashCraft			instance;
+	public static CashCraft		instance;
 
 	// Define proxies
 	@SidedProxy( clientSide = ModInfo.PROXY_LOCATION + "ClientProxy", serverSide = ModInfo.PROXY_LOCATION + "CommonProxy" )
-	public static CommonProxy			proxy;
+	public static CommonProxy	proxy;
 
 	public ModSettings			modConfig;
-	//public static SimpleNetworkWrapper	network;
+
+	// public static SimpleNetworkWrapper network;
 
 	@EventHandler
 	public void serverLoad( FMLServerStartingEvent event )
 	{
-		//event.registerServerCommand( new DebugCommand() );
+		// Economy commands - for testing purposes only
+		// event.registerServerCommand( new CommandWallet() );
+		// event.registerServerCommand( new CommandPay() );
+		// event.registerServerCommand( new CommandBankrupt() );
+		// event.registerServerCommand( new CommandReconcile() );
+		// event.registerServerCommand( new CommandBill() );
 	}
 
 	@EventHandler
@@ -48,6 +54,9 @@ public class CashCraft
 
 		// Load configuration
 		ModSettings.init( event.getSuggestedConfigurationFile() );
+
+		// Initialize API
+		CashCraftAPI.economy = new Economy();
 	}
 
 	@EventHandler
@@ -62,7 +71,7 @@ public class CashCraft
 		proxy.postInit();
 
 		// Register event handler
-		//MinecraftForge.EVENT_BUS.register( new EventManager() );
+		// MinecraftForge.EVENT_BUS.register( new EventManager() );
 	}
 
 	/**
