@@ -2,7 +2,7 @@ package io.github.tehstoneman.cashcraft.proxies;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.creativetab.CashCraftTab;
-import io.github.tehstoneman.cashcraft.item.CashItems;
+import io.github.tehstoneman.cashcraft.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 
 public class CommonProxy
@@ -16,9 +16,9 @@ public class CommonProxy
 
 	public void Init()
 	{
-		CashItems.RegisterItems();
+		CashCraftItems.RegisterItems();
 		if( ModSettings.makeChange )
-			CashItems.RegisterRecipes();
+			CashCraftItems.RegisterRecipes();
 	}
 
 	public void postInit()

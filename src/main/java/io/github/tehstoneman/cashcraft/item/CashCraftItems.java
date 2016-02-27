@@ -3,15 +3,15 @@ package io.github.tehstoneman.cashcraft.item;
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class CashItems
+public class CashCraftItems
 {
 	public static ItemCash	itemCoin;
 
 	public static void RegisterItems()
 	{
-		itemCoin = (ItemCash)new ItemCash().setUnlocalizedName( ModInfo.MODID ).setTextureName( "cash" );
+		itemCoin = (ItemCash)new ItemCash().setUnlocalizedName( ModInfo.MODID + ".cash" );
 		GameRegistry.registerItem( itemCoin, "cash" );
 	}
 

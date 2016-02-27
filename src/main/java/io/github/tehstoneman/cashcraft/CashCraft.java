@@ -1,18 +1,19 @@
 package io.github.tehstoneman.cashcraft;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
+import io.github.tehstoneman.cashcraft.command.CommandCashCraft;
 import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.proxies.CommonProxy;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 //@formatter:off
 @Mod(	modid						= ModInfo.MODID,
@@ -39,6 +40,7 @@ public class CashCraft
 	@EventHandler
 	public void serverLoad( FMLServerStartingEvent event )
 	{
+		event.registerServerCommand( new CommandCashCraft() );
 		// Economy commands - for testing purposes only
 		// event.registerServerCommand( new CommandWallet() );
 		// event.registerServerCommand( new CommandPay() );
@@ -50,10 +52,10 @@ public class CashCraft
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent event )
 	{
-		proxy.preInit();
-
 		// Load configuration
 		ModSettings.init( event.getSuggestedConfigurationFile() );
+
+		proxy.preInit();
 
 		// Initialize API
 		CashCraftAPI.economy = new Economy();
