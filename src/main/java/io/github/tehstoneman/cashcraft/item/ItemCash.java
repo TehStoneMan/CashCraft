@@ -4,32 +4,25 @@ import io.github.tehstoneman.cashcraft.CashCraft;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemCash extends Item
 {
-	private IIcon[]	icons;
-
 	public ItemCash()
 	{
 		setHasSubtypes( true );
 		setMaxDamage( 0 );
-		// setCreativeTab( CreativeTabs.tabMisc );
 	}
-
+	
 	@Override
-	@SideOnly( Side.CLIENT )
-	public IIcon getIconFromDamage( int damage )
+	public int getMetadata( int damage )
 	{
-		final int j = MathHelper.clamp_int( damage, 0, 15 );
-		return icons[j];
+		return damage;
 	}
 
 	@Override
@@ -38,7 +31,6 @@ public class ItemCash extends Item
 		final int metadata = itemStack.getItemDamage();
 		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
 		return super.getUnlocalizedName() + "." + values.getName();
-		// return "item." + ModInfo.MODID + "." + values.getName();
 	}
 
 	@Override
@@ -65,6 +57,7 @@ public class ItemCash extends Item
 		return values.getValue();
 	}
 
+	/*
 	@Override
 	@SideOnly( Side.CLIENT )
 	public void registerIcons( IIconRegister register )
@@ -77,6 +70,7 @@ public class ItemCash extends Item
 			icons[i] = register.registerIcon( CashCraft.modAsset( getIconString() + "_" + values.getTextureName() ) );
 		}
 	}
+	*/
 
 	public static enum EnumCoinValue
 	{
@@ -137,12 +131,18 @@ public class ItemCash extends Item
 
 		public String getName()
 		{
+			/*
+			 * if( ModSettings.showAsCoins )
+			 * return String.valueOf( value ) + " " + CashCraftAPI.economy.currency( value, false );
+			 * else
+			 * return String.valueOf( value / 128 ) + " " + CashCraftAPI.economy.currency( value, false );
+			 */
 			return name;
 		}
 
 		public String getTextureName()
 		{
-			return icon;
+			return "cash_" + icon;
 		}
 	}
 }

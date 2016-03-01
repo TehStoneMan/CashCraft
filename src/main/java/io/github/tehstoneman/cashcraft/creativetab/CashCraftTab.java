@@ -1,7 +1,7 @@
 package io.github.tehstoneman.cashcraft.creativetab;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.item.CashItems;
+import io.github.tehstoneman.cashcraft.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class CashCraftTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return new ItemStack( CashItems.itemCoin, 1, EnumCoinValue.COIN_SIXTY_FOUR.getMetadata() ).getItem();
+		return new ItemStack( CashCraftItems.itemCoin, 1, EnumCoinValue.COIN_SIXTY_FOUR.getMetadata() ).getItem();
 	}
 
 	@Override

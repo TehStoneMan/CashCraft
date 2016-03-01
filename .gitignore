@@ -82,3 +82,15 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+# =========================
+# Build artifacts
+# =========================
+
+build/
+
+# =========================
+# Log files
+# =========================
+
+*.log
