@@ -20,7 +20,11 @@ apply plugin: "net.minecraftforge.gradle.forge"
 
 archivesBaseName = "CashCraft"
 group = "io.github.tehstoneman.cashcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-version = "[1.8.9]-2.0"
+version = "mc1.8.9-2.0.0"
+
+// java version
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 minecraft
 {
@@ -41,9 +45,28 @@ sourceSets
 {
     main
     {
-        java { srcDirs = ["$projectDir/src/main/java"] }
-        resources { srcDirs = ["$projectDir/src/main/resources"] }
+        java
+        {
+        	srcDir 'src/main/java'
+        }
+        resources
+        {
+        	srcDir 'src/main/resources'
+        }
     }
+    api
+    {
+        java
+        {
+        	srcDir 'src/api/java'
+        }
+    }
+}
+
+// add api classes to main package
+jar
+{
+	from sourceSets.api.output
 }
 
 processResources

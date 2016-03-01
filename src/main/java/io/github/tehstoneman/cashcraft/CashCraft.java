@@ -40,7 +40,7 @@ public class CashCraft
 	@EventHandler
 	public void serverLoad( FMLServerStartingEvent event )
 	{
-		event.registerServerCommand( new CommandCashCraft() );
+		//event.registerServerCommand( new CommandCashCraft() );
 		// Economy commands - for testing purposes only
 		// event.registerServerCommand( new CommandWallet() );
 		// event.registerServerCommand( new CommandPay() );
