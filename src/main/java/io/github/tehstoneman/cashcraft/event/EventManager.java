@@ -1,29 +1,62 @@
 package io.github.tehstoneman.cashcraft.event;
 
+import io.github.tehstoneman.cashcraft.block.BlockVender;
+import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 
 public class EventManager
 {
 	private static Minecraft	mc	= Minecraft.getMinecraft();
 
 	@SubscribeEvent
-	public void onEntityItemPickupEvent( EntityItemPickupEvent event )
+	public void onBreakBlock( BreakEvent event )
 	{
+		World world = event.world;
+		TileEntity tileEntity = world.getTileEntity( event.pos );
+		if( tileEntity != null && tileEntity instanceof TileEntityVender )
+		{
+			if( ((TileEntityVender)tileEntity).getOwnderID() != null && !event.getPlayer().getUniqueID().equals( ((TileEntityVender)tileEntity).getOwnderID() ) )
+				event.setCanceled( true );
+		}
 	}
-
+	/*
 	@SubscribeEvent
-	public void onPlayerItemPickupEvent( ItemPickupEvent event )
+	public void onModelBakeEvent( ModelBakeEvent event ) throws IOException
 	{
+		final Function< ResourceLocation, TextureAtlasSprite > bakedTextureGetter = new Function< ResourceLocation, TextureAtlasSprite >()
+		{
+			@Override
+			public TextureAtlasSprite apply( ResourceLocation resourceLocation )
+			{
+				return Minecraft.getMinecraft().getTextureMapBlocks().registerSprite( resourceLocation );
+			}
+		};
+				final OBJModel model = (OBJModel)OBJLoader.instance.loadModel( new ModelResourceLocation( ModInfo.MODID, "block/trade_block.obj" ) );
+				final IBakedModel bakedModel = model.bake( model.getDefaultState(), Attributes.DEFAULT_BAKED_FORMAT, bakedTextureGetter );
+				event.modelRegistry.putObject( new ModelResourceLocation( ModInfo.MODID, "block/trade_block.obj" ), bakedModel );
 	}
-
-	@SubscribeEvent
-	public void onLivingDeathEvent( LivingDeathEvent event )
-	{
-		if( event.entityLiving.worldObj.isRemote )
-			return;
-	}
+	*/
+	
+	/*
+	 * @SubscribeEvent
+	 * public void onEntityItemPickupEvent( EntityItemPickupEvent event )
+	 * {
+	 * }
+	 * 
+	 * @SubscribeEvent
+	 * public void onPlayerItemPickupEvent( ItemPickupEvent event )
+	 * {
+	 * }
+	 * 
+	 * @SubscribeEvent
+	 * public void onLivingDeathEvent( LivingDeathEvent event )
+	 * {
+	 * if( event.entityLiving.worldObj.isRemote )
+	 * return;
+	 * }
+	 */
 }

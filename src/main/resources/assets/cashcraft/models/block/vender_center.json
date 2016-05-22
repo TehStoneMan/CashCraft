@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures":
+    {
+    	"side"   : "cashcraft:blocks/vender-1-2",
+    	"top"    : "cashcraft:blocks/vender-0-2",
+    	"bottom" : "cashcraft:blocks/vender-4-0"
+    }
+}

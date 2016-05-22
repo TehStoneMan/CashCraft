@@ -1,10 +1,11 @@
 package io.github.tehstoneman.cashcraft;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
-import io.github.tehstoneman.cashcraft.command.CommandCashCraft;
 import io.github.tehstoneman.cashcraft.economy.Economy;
+import io.github.tehstoneman.cashcraft.event.EventManager;
 import io.github.tehstoneman.cashcraft.proxies.CommonProxy;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -73,7 +74,7 @@ public class CashCraft
 		proxy.postInit();
 
 		// Register event handler
-		// MinecraftForge.EVENT_BUS.register( new EventManager() );
+		MinecraftForge.EVENT_BUS.register( new EventManager() );
 	}
 
 	/**
