@@ -1,9 +1,10 @@
 package io.github.tehstoneman.cashcraft.block;
 
-import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
-
 import java.util.Random;
 
+import io.github.tehstoneman.cashcraft.CashCraft;
+import io.github.tehstoneman.cashcraft.client.gui.GuiHandler;
+import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -42,8 +43,8 @@ public class BlockVender extends Block implements ITileEntityProvider
 	public BlockVender( Material materialIn )
 	{
 		super( materialIn );
-		this.setHardness( 2.0f );
-		this.setResistance( 600.0f );
+		setHardness( 2.0f );
+		setResistance( 600.0f );
 	}
 
 	@Override
@@ -54,7 +55,7 @@ public class BlockVender extends Block implements ITileEntityProvider
 
 	/*
 	 * @Override
-	 *
+	 * 
 	 * @SideOnly( Side.CLIENT )
 	 * public EnumWorldBlockLayer getBlockLayer()
 	 * {
@@ -76,9 +77,7 @@ public class BlockVender extends Block implements ITileEntityProvider
 			final TileEntity tileentity = worldIn.getTileEntity( pos );
 
 			if( tileentity instanceof TileEntityVender )
-			{
-				// playerIn.displayGUIChest((TileEntityFurnace)tileentity);
-			}
+				playerIn.openGui( CashCraft.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ() );
 
 			return true;
 		}
@@ -114,7 +113,7 @@ public class BlockVender extends Block implements ITileEntityProvider
 		/*
 		 * if (stack.hasDisplayName())
 		 * {
-		 *
+		 * 
 		 * {
 		 * ((TileEntityTrade)tileentity).setCustomInventoryName(stack.getDisplayName());
 		 * }
