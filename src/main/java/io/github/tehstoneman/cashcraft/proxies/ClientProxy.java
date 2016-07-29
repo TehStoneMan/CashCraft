@@ -8,9 +8,9 @@ import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
 import io.github.tehstoneman.cashcraft.util.CashCraftModelLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy
 	{
 		super.preInit();
 		
-		OBJLoader.instance.addDomain( ModInfo.MODID.toLowerCase() );
+		OBJLoader.INSTANCE.addDomain( ModInfo.MODID.toLowerCase() );
 
 		final StateMapperBase ignoreState = new StateMapperBase()
 		{

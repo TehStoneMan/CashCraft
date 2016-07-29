@@ -2,23 +2,27 @@ package io.github.tehstoneman.cashcraft.block;
 
 import java.util.Random;
 
-import io.github.tehstoneman.cashcraft.CashCraft;
-import io.github.tehstoneman.cashcraft.client.gui.GuiHandler;
+import javax.annotation.Nullable;
+
+import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
+import io.github.tehstoneman.cashcraft.api.ITrade.EnumTradeType;
 import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -64,10 +68,9 @@ public class BlockVender extends Block implements ITileEntityProvider
 	 */
 
 	@Override
-	public boolean onBlockActivated( World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY,
-			float hitZ )
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if( !( (IExtendedBlockState)getExtendedState( state, worldIn, pos ) ).getValue( BUILT ) )
+		if( !CashCraftAPI.economy.isEnabled() || !( (IExtendedBlockState)getExtendedState( state, worldIn, pos ) ).getValue( BUILT ) )
 			return false;
 
 		if( worldIn.isRemote )
@@ -77,7 +80,7 @@ public class BlockVender extends Block implements ITileEntityProvider
 			final TileEntity tileentity = worldIn.getTileEntity( pos );
 
 			if( tileentity instanceof TileEntityVender )
-				playerIn.openGui( CashCraft.instance, GuiHandler.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ() );
+				CashCraftAPI.trade.openTradeGui( playerIn, EnumTradeType.OWNER, worldIn, pos );
 
 			return true;
 		}
@@ -89,17 +92,21 @@ public class BlockVender extends Block implements ITileEntityProvider
 		return new TileEntityVender();
 	}
 
+	/*
 	@Override
 	public boolean isFullCube()
 	{
 		return false;
 	}
+	*/
 
+	/*
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
+	*/
 
 	@Override
 	public void onBlockPlacedBy( World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack )
@@ -121,13 +128,14 @@ public class BlockVender extends Block implements ITileEntityProvider
 		 */
 	}
 
-	public void checkInvalid( World worldIn, BlockPos pos, IBlockState state )
+	public void checkInvalid( IBlockAccess world, BlockPos pos, BlockPos neighbor )
 	{
 		// Check for invalid structure
-		final IExtendedBlockState extendedState = (IExtendedBlockState)getExtendedState( state, worldIn, pos );
+		IBlockState state = world.getBlockState( neighbor );
+		final IExtendedBlockState extendedState = (IExtendedBlockState)getExtendedState( state, world, pos );
 		if( extendedState.getValue( BUILT ) )
 		{
-			final TileEntityVender tileEntity = (TileEntityVender)worldIn.getTileEntity( pos );
+			final TileEntityVender tileEntity = (TileEntityVender)world.getTileEntity( pos );
 			if( extendedState.getValue( MASTER ) )
 			{
 				if( !tileEntity.checkMultiBlockForm() )
@@ -137,7 +145,7 @@ public class BlockVender extends Block implements ITileEntityProvider
 				// Get master block and reset structure
 				if( tileEntity.checkForMaster() )
 				{
-					final TileEntityVender master = (TileEntityVender)worldIn.getTileEntity( tileEntity.getMasterPos() );
+					final TileEntityVender master = (TileEntityVender)world.getTileEntity( tileEntity.getMasterPos() );
 					if( !master.checkMultiBlockForm() )
 						master.resetStructure();
 				}
@@ -168,11 +176,11 @@ public class BlockVender extends Block implements ITileEntityProvider
 	}
 
 	@Override
-	public void onNeighborBlockChange( World worldIn, BlockPos pos, IBlockState state, Block neighborBlock )
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
 	{
-		checkInvalid( worldIn, pos, state );
+		checkInvalid( world, pos, neighbor );
 
-		super.onNeighborBlockChange( worldIn, pos, state, neighborBlock );
+		super.onNeighborChange( world, pos, neighbor );
 	}
 
 	@Override
@@ -193,15 +201,17 @@ public class BlockVender extends Block implements ITileEntityProvider
 		super.breakBlock( worldIn, pos, state );
 	}
 
+	/*
 	@Override
 	@SideOnly( Side.CLIENT )
-	public Item getItem( World worldIn, BlockPos pos )
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return Item.getItemFromBlock( CashCraftBlocks.blockVender );
 	}
+	*/
 
 	@Override
-	protected BlockState createBlockState()
+	protected BlockStateContainer createBlockState()
 	{
 		final IProperty[] listedProperties = new IProperty[0]; // no listed properties
 		final IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { BUILT, MASTER, CENTER, TOP, BOTTOM, NORTH, SOUTH, EAST, WEST };

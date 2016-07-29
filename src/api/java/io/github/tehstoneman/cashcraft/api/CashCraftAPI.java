@@ -13,4 +13,9 @@ public class CashCraftAPI
 	 * Used to call economy related API functions
 	 */
 	public static IEcomomy	economy;
+	
+	/**
+	 * Used to access the internal trade module
+	 */
+	public static ITrade trade;
 }

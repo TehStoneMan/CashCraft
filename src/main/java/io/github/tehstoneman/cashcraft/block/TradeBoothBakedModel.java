@@ -5,19 +5,17 @@ import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.Attributes;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.ISmartBlockModel;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockModel
+public class TradeBoothBakedModel implements IBakedModel
 {
 	private final IBakedModel	unbuiltModel;
 	private final IBakedModel	builtModel;
@@ -28,6 +26,7 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 		this.builtModel = builtModel;
 	}
 
+	/*
 	@Override
 	public List< BakedQuad > getFaceQuads( EnumFacing side )
 	{
@@ -39,6 +38,7 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 	{
 		throw new UnsupportedOperationException();
 	}
+	*/
 
 	@Override
 	public boolean isAmbientOcclusion()
@@ -70,12 +70,15 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 		return unbuiltModel.getItemCameraTransforms();
 	}
 
+	/*
 	@Override
 	public VertexFormat getFormat()
 	{
 		return Attributes.DEFAULT_BAKED_FORMAT;
 	}
+	*/
 
+	/*
 	@Override
 	public IBakedModel handleBlockState( IBlockState state )
 	{
@@ -86,6 +89,7 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 		}
 		return new AssembledBakedModel();
 	}
+	*/
 
 	public class AssembledBakedModel implements IBakedModel
 	{
@@ -107,6 +111,7 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 			bottom = iExtendedBlockState.getValue( BlockVender.BOTTOM );
 		}
 
+		/*
 		@Override
 		public List< BakedQuad > getFaceQuads( EnumFacing side )
 		{
@@ -124,12 +129,15 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 				 * else
 				 * allFaceQuads.addAll( baseModel.getFaceQuads( side ) );
 				 */
+		/*
 			}
 			else
 				allFaceQuads.addAll( unbuiltModel.getFaceQuads( side ) );
 			return allFaceQuads;
 		}
+		*/
 
+		/*
 		@Override
 		public List< BakedQuad > getGeneralQuads()
 		{
@@ -150,11 +158,13 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 				 * else
 				 * allGeneralQuads.addAll( baseModel.getGeneralQuads() );
 				 */
+		/*
 			}
 			else
 				allGeneralQuads.addAll( unbuiltModel.getGeneralQuads() );
 			return allGeneralQuads;
 		}
+		*/
 
 		@Override
 		public boolean isAmbientOcclusion()
@@ -185,5 +195,33 @@ public class TradeBoothBakedModel implements IFlexibleBakedModel, ISmartBlockMod
 		{
 			return unbuiltModel.getItemCameraTransforms();
 		}
+
+		@Override
+		public List< BakedQuad > getQuads( IBlockState state, EnumFacing side, long rand )
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public ItemOverrideList getOverrides()
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+	}
+
+	@Override
+	public List< BakedQuad > getQuads( IBlockState state, EnumFacing side, long rand )
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemOverrideList getOverrides()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

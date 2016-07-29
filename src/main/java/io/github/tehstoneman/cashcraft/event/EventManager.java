@@ -1,6 +1,5 @@
 package io.github.tehstoneman.cashcraft.event;
 
-import io.github.tehstoneman.cashcraft.block.BlockVender;
 import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -15,8 +14,8 @@ public class EventManager
 	@SubscribeEvent
 	public void onBreakBlock( BreakEvent event )
 	{
-		World world = event.world;
-		TileEntity tileEntity = world.getTileEntity( event.pos );
+		World world = event.getWorld();
+		TileEntity tileEntity = world.getTileEntity( event.getPos() );
 		if( tileEntity != null && tileEntity instanceof TileEntityVender )
 		{
 			if( ((TileEntityVender)tileEntity).getOwnderID() != null && !event.getPlayer().getUniqueID().equals( ((TileEntityVender)tileEntity).getOwnderID() ) )

@@ -2,7 +2,6 @@ package io.github.tehstoneman.cashcraft.block;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -16,7 +15,7 @@ public class CashCraftBlocks
 
 	public static void RegisterBlocks()
 	{
-		blockVender = new BlockVender( Material.wood ).setUnlocalizedName( ModInfo.MODID + ".vender" );
+		blockVender = new BlockVender( Material.WOOD ).setUnlocalizedName( ModInfo.MODID + ".vender" );
 		GameRegistry.registerBlock( blockVender, "vender" );
 	}
 
@@ -29,7 +28,7 @@ public class CashCraftBlocks
 							   "PDP", 'P', "plankWood",
 							   		  'I', "ingotIron",
 							   		  'G', "blockGlass",
-							   		  'D', Blocks.dispenser, } );
+							   		  'D', Blocks.DISPENSER, } );
 		GameRegistry.addRecipe( tradeBlockRecipe );
 		//@formatter:on
 	}

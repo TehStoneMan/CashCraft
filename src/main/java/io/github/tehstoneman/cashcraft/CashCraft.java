@@ -2,6 +2,7 @@ package io.github.tehstoneman.cashcraft;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.economy.Economy;
+import io.github.tehstoneman.cashcraft.economy.Trade;
 import io.github.tehstoneman.cashcraft.event.EventManager;
 import io.github.tehstoneman.cashcraft.proxies.CommonProxy;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
@@ -41,7 +42,7 @@ public class CashCraft
 	@EventHandler
 	public void serverLoad( FMLServerStartingEvent event )
 	{
-		//event.registerServerCommand( new CommandCashCraft() );
+		// event.registerServerCommand( new CommandCashCraft() );
 		// Economy commands - for testing purposes only
 		// event.registerServerCommand( new CommandWallet() );
 		// event.registerServerCommand( new CommandPay() );
@@ -60,6 +61,7 @@ public class CashCraft
 
 		// Initialize API
 		CashCraftAPI.economy = new Economy();
+		CashCraftAPI.trade = new Trade();
 	}
 
 	@EventHandler

@@ -47,7 +47,7 @@ public class PlayerWallet implements IPlayerWallet
 		while( value > 0 )
 		{
 			final ItemStack stackCash = CashCraftAPI.economy.getCash( value );
-			final EntityItem entityitem = player.dropPlayerItemWithRandomChoice( stackCash, false );
+			//final EntityItem entityitem = player.dropPlayerItemWithRandomChoice( stackCash, false );
 			//entityitem.delayBeforeCanPickup = 0;
 			value -= CashCraftAPI.economy.getValue( stackCash );
 		}

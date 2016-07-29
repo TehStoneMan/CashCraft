@@ -1,13 +1,10 @@
 package io.github.tehstoneman.cashcraft.item;
 
-import io.github.tehstoneman.cashcraft.CashCraft;
-
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

@@ -2,6 +2,7 @@ package io.github.tehstoneman.cashcraft.tileentity;
 
 import java.util.UUID;
 
+import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,11 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 
 public class TileEntityVender extends TileEntity implements ITickable, IInventory
 {
@@ -113,7 +112,7 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 					{
 						( (TileEntityVender)tileEntity ).setMasterPos( getPos() );
 						( (TileEntityVender)tileEntity ).setBuilt( true );
-						worldObj.markBlockForUpdate( checkPos );
+						//worldObj.markBlockForUpdate( checkPos );
 					}
 				}
 		markDirty();
@@ -134,7 +133,7 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 					final TileEntity tileEntity = worldObj.getTileEntity( checkPos );
 					if( tileEntity != null && tileEntity instanceof TileEntityVender )
 						( (TileEntityVender)tileEntity ).reset();
-					worldObj.markBlockForUpdate( checkPos );
+					//worldObj.markBlockForUpdate( checkPos );
 				}
 		markDirty();
 	}
@@ -155,7 +154,7 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 	@Override
 	public void update()
 	{
-		if( !worldObj.isRemote )
+		if( !worldObj.isRemote && CashCraftAPI.economy.isEnabled() )
 			if( isBuilt() )
 			{
 				if( isMaster() )
@@ -175,7 +174,7 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 	}
 
 	@Override
-	public void writeToNBT( NBTTagCompound compound )
+	public NBTTagCompound writeToNBT( NBTTagCompound compound )
 	{
 		super.writeToNBT( compound );
 
@@ -199,6 +198,7 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 		{
 			// TODO: Store Master-only data here
 		}
+		return compound;
 	}
 
 	@Override
@@ -226,21 +226,21 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 		}
 	}
 
-	@Override
+	/*@Override
 	public Packet getDescriptionPacket()
 	{
 		final NBTTagCompound nbtTagCompound = new NBTTagCompound();
 		writeToNBT( nbtTagCompound );
 		final int metadata = getBlockMetadata();
 		return new S35PacketUpdateTileEntity( pos, metadata, nbtTagCompound );
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void onDataPacket( NetworkManager net, S35PacketUpdateTileEntity pkt )
 	{
 		readFromNBT( pkt.getNbtCompound() );
 		Minecraft.getMinecraft().renderGlobal.markBlockForUpdate( pos );
-	}
+	}*/
 
 	public void setOwner( EntityPlayer player )
 	{
@@ -266,12 +266,12 @@ public class TileEntityVender extends TileEntity implements ITickable, IInventor
 		return false;
 	}
 
-	@Override
+	/*@Override
 	public IChatComponent getDisplayName()
 	{
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	@Override
 	public int getSizeInventory()
