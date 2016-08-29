@@ -1,6 +1,6 @@
 package io.github.tehstoneman.cashcraft.event;
 
-import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
+import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

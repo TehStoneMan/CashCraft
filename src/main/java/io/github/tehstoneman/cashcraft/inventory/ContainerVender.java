@@ -1,6 +1,6 @@
 package io.github.tehstoneman.cashcraft.inventory;
 
-import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
+import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

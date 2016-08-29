@@ -1,4 +1,4 @@
-package io.github.tehstoneman.cashcraft.item;
+package io.github.tehstoneman.cashcraft.common.item;
 
 import java.util.List;
 
@@ -53,21 +53,6 @@ public class ItemCash extends Item
 		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
 		return values.getValue();
 	}
-
-	/*
-	@Override
-	@SideOnly( Side.CLIENT )
-	public void registerIcons( IIconRegister register )
-	{
-		icons = new IIcon[EnumCoinValue.values().length];
-
-		for( int i = 0; i < EnumCoinValue.values().length; ++i )
-		{
-			final EnumCoinValue values = EnumCoinValue.byMetadata( i );
-			icons[i] = register.registerIcon( CashCraft.modAsset( getIconString() + "_" + values.getTextureName() ) );
-		}
-	}
-	*/
 
 	public static enum EnumCoinValue
 	{
@@ -128,12 +113,6 @@ public class ItemCash extends Item
 
 		public String getName()
 		{
-			/*
-			 * if( ModSettings.showAsCoins )
-			 * return String.valueOf( value ) + " " + CashCraftAPI.economy.currency( value, false );
-			 * else
-			 * return String.valueOf( value / 128 ) + " " + CashCraftAPI.economy.currency( value, false );
-			 */
 			return name;
 		}
 

@@ -11,7 +11,7 @@ public class ModSettings
 	public static String	cashSingular;
 	public static String	cashPlural;
 	public static boolean	showAsCoins;
-	public static boolean useTrade;
+	public static boolean	useTrade;
 
 	public static void init( File configFile )
 	{

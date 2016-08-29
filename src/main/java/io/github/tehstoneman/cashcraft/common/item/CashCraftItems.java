@@ -1,7 +1,7 @@
-package io.github.tehstoneman.cashcraft.item;
+package io.github.tehstoneman.cashcraft.common.item;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
+import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -12,7 +12,7 @@ public class CashCraftItems
 	public static void RegisterItems()
 	{
 		itemCoin = (ItemCash)new ItemCash().setUnlocalizedName( ModInfo.MODID + ".cash" );
-		GameRegistry.registerItem( itemCoin, "cash" );
+		GameRegistry.register( itemCoin.setRegistryName( "cash" ) );
 	}
 
 	public static void RegisterRecipes()

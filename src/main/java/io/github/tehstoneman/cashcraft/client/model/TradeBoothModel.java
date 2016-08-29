@@ -1,12 +1,14 @@
-package io.github.tehstoneman.cashcraft.block;
+package io.github.tehstoneman.cashcraft.client.model;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
+import io.github.tehstoneman.cashcraft.ModInfo;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

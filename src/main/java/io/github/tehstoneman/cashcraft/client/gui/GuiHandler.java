@@ -1,8 +1,8 @@
 package io.github.tehstoneman.cashcraft.client.gui;
 
 import io.github.tehstoneman.cashcraft.api.ITrade.EnumTradeType;
+import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
 import io.github.tehstoneman.cashcraft.inventory.ContainerVender;
-import io.github.tehstoneman.cashcraft.tileentity.TileEntityVender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

@@ -1,4 +1,3 @@
-
 // For those who want the bleeding edge
 buildscript
 {
@@ -18,6 +17,15 @@ buildscript
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+repositories
+{
+    maven
+    {
+        name = "zerocore"
+        url = "http://maven.zerono.it/"
+    }
+}
+
 /*
 // for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
 plugins
@@ -25,13 +33,14 @@ plugins
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
+
 archivesBaseName = "CashCraft"
 group = "io.github.tehstoneman.cashcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 version = "mc1.10.2-2.0.0"
 
 // java version
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 minecraft
 {
@@ -78,6 +87,7 @@ dependencies
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+	compile group: "it.zerono.mods.zerocore", name: "zerocore", version: "1.10.2-0.0.4"
 }
 
 sourceSets

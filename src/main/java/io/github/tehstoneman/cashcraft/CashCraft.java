@@ -22,7 +22,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 		name						= ModInfo.NAME,
 		version						= ModInfo.VERSION,
 		dependencies				= ModInfo.DEPENDENCIES,
-		acceptedMinecraftVersions	= ModInfo.MINECRAFT )
+		acceptedMinecraftVersions	= ModInfo.MINECRAFT,
+		updateJSON					= ModInfo.UPDATE_JSON )
 //@formatter:on
 public class CashCraft
 {

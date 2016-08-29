@@ -1,10 +1,10 @@
-package io.github.tehstoneman.cashcraft.creativetab;
+package io.github.tehstoneman.cashcraft.client.creativetab;
 
 import java.util.List;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.item.CashCraftItems;
-import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
+import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,15 +23,15 @@ public class CashCraftTab extends CreativeTabs
 		return new ItemStack( CashCraftItems.itemCoin, 1, EnumCoinValue.COIN_SIXTY_FOUR.getMetadata() ).getItem();
 	}
 
-/*	@Override
-	public void displayAllReleventItems( List itemsToShowOnTab )
+	@Override
+	public void displayAllRelevantItems( List itemsToShowOnTab )
 	{
-		for( final Object itemObject : Item.itemRegistry )
+		for( final Object itemObject : Item.REGISTRY )
 		{
 			final Item item = (Item)itemObject;
 			if( item != null )
 				if( item.getUnlocalizedName().contains( ModInfo.MODID ) )
 					item.getSubItems( item, this, itemsToShowOnTab );
 		}
-	}*/
+	}
 }

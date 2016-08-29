@@ -1,6 +1,9 @@
 {
+ 	"forge_marker": 1,
     "variants":
     {
-        "normal" : { "model": "cashcraft:smartmodel/vender" }
+		"state=unbuilt" : { "model" : "cashcraft:vender_block" },
+		"state=built"   : { "model" : "cashcraft:empty" },
+		"state=master"  : { "model" : "cashcraft:vender.obj", "custom": { "flip-v": true } }
     }
 }

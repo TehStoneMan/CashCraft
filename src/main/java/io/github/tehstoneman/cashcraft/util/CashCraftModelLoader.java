@@ -1,7 +1,7 @@
 package io.github.tehstoneman.cashcraft.util;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.block.TradeBoothModel;
+import io.github.tehstoneman.cashcraft.client.model.TradeBoothModel;
 
 import java.io.IOException;
 
@@ -24,7 +24,8 @@ public class CashCraftModelLoader implements ICustomModelLoader
 	@Override
 	public boolean accepts( ResourceLocation modelLocation )
 	{
-		return modelLocation.getResourceDomain().equals( ModInfo.MODID.toLowerCase() ) && modelLocation.getResourcePath().startsWith( MODEL_LOCATION );
+		return modelLocation.getResourceDomain().equals( ModInfo.MODID.toLowerCase() )
+				&& modelLocation.getResourcePath().startsWith( MODEL_LOCATION );
 	}
 
 	@Override
