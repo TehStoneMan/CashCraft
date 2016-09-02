@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "cashcraft:items/cash_note_008"
+        "layer0": "cashcraft:items/cash_note_010"
     },
     "display": {
         "thirdperson": {

@@ -54,9 +54,7 @@ public class ClientProxy extends CommonProxy
 				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 9 ).getTextureName() ) ),
 				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 10 ).getTextureName() ) ),
 				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 11 ).getTextureName() ) ),
-				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 12 ).getTextureName() ) ),
-				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 13 ).getTextureName() ) ),
-				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 14 ).getTextureName() ) ) );
+				new ResourceLocation( CashCraft.modAsset( EnumCoinValue.byMetadata( 12 ).getTextureName() ) ) );
 
 		final ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation( CashCraft.modAsset( "vender" ), "inventory" );
 		final int DEFAULT_ITEM_SUBTYPE = 0;

@@ -57,21 +57,20 @@ public class ItemCash extends Item
 	public static enum EnumCoinValue
 	{
 		//@formatter:off
-		COIN_ONE(			 0,     1, "coin.one",			"coin_001" ),
-		COIN_TWO(			 1,     2, "coin.two",			"coin_002" ),
-		COIN_FOUR(			 2,     4, "coin.four",			"coin_004" ),
-		COIN_EIGHT(			 3,     8, "coin.eight",		"coin_008" ),
-		COIN_SIXTEEN(		 4,    16, "coin.sixteen",		"coin_016" ),
-		COIN_THIRTY_TWO(	 5,    32, "coin.thirtyTwo",	"coin_032" ),
-		COIN_SIXTY_FOUR(	 6,    64, "coin.sixtyFour",	"coin_064" ),
-		NOTE_ONE(			 7,   128, "note.one",			"note_001" ),
-		NOTE_TWO(			 8,   256, "note.two",			"note_002" ),
-		NOTE_FOUR(			 9,   512, "note.four",			"note_004" ),
-		NOTE_EIGHT(			10,  1024, "note.eight",		"note_008" ),
-		NOTE_SIXTEEN(		11,  2048, "note.sixteen",		"note_016" ),
-		NOTE_THIRTY_TWO(	12,  4096, "note.thirtyTwo",	"note_032" ),
-		NOTE_SIXTY_FOUR(	13,  8192, "note.sixtyFour",	"note_064" ),
-		NOTE_ONE_TWO_EIGHT(	14, 16384, "note.oneTwoEight",	"note_128" );		// @formatter:on
+		COIN_ONE(		 0,     1, "coin.one",		"coin_001" ), //   0.01
+		COIN_TWO(		 1,     2, "coin.two",		"coin_002" ), //   0.02
+		COIN_FIVE(		 2,     5, "coin.five",		"coin_005" ), //   0.05
+		COIN_TEN(		 3,    10, "coin.ten",		"coin_010" ), //   0.10
+		COIN_TWENTY(	 4,    20, "coin.twenty",	"coin_020" ), //   0.20
+		COIN_FIFTY(		 5,    50, "coin.fifty",	"coin_050" ), //   0.50
+		NOTE_ONE(		 6,   100, "note.one",		"note_001" ), //   1.00
+		NOTE_TWO(		 7,   200, "note.two",		"note_002" ), //   2.00
+		NOTE_FIVE(		 8,   500, "note.five",		"note_005" ), //   5.00
+		NOTE_TEN(		 9,  1000, "note.ten",		"note_010" ), //  10.00
+		NOTE_TWENTY(	10,  2000, "note.twenty",	"note_020" ), //  20.00
+		NOTE_FIFTY(		11,  5000, "note.fifty",	"note_050" ), //  50.00
+		NOTE_HUNDRED(	12,	10000, "note.hundred",	"note_100" ); // 100.00
+		// @formatter:on
 
 		private int								meta;
 		private int								value;
