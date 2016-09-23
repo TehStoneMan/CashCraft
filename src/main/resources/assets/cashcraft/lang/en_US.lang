@@ -2,6 +2,10 @@
 
 itemGroup.cashCraft=CashCraft
 
+guiGroup.cashCraft.venderStock=Stock
+guiGroup.cashCraft.venderPrices=Price List
+guiGroup.cashCraft.venderCustomer=Items For Sale
+
 item.cashCraft.cash.coin.one.name=1 coin
 item.cashCraft.cash.coin.two.name=2 coin
 item.cashCraft.cash.coin.five.name=5 coin
@@ -26,5 +30,7 @@ economy.cashCraft.coinSingular.long=Minecraft Coin
 economy.cashCraft.coinSingular.short=MC
 economy.cashCraft.coinPlural.long=Minecraft Coins
 economy.cashCraft.coinPlural.short=MC
+economy.cashCraft.balance=Balance
+economy.cashCraft.withdraw=Withdraw
 
-container.cashCraft.vender=Vender
+container.cashCraft.vender=Vending Machine

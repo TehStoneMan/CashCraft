@@ -1,8 +1,12 @@
 package io.github.tehstoneman.cashcraft.client.gui;
 
+import java.util.logging.Logger;
+
+import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.api.ITrade.EnumTradeType;
+import io.github.tehstoneman.cashcraft.common.inventory.ContainerVender;
 import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
-import io.github.tehstoneman.cashcraft.inventory.ContainerVender;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +23,7 @@ public class GuiHandler implements IGuiHandler
 		if( ID == EnumTradeType.OWNER.getGuiID() && tileEntity instanceof TileEntityVender )
 		{
 			final TileEntityVender vender = (TileEntityVender)tileEntity;
-			return new ContainerVender( vender, player );
+			return new ContainerVender( player.inventory, vender, Minecraft.getMinecraft().thePlayer );
 		}
 		return null;
 	}
@@ -31,8 +35,8 @@ public class GuiHandler implements IGuiHandler
 		final TileEntity tileEntity = world.getTileEntity( blockPos );
 		if( ID == EnumTradeType.OWNER.getGuiID() && tileEntity instanceof TileEntityVender )
 		{
-			final TileEntityVender tileEntityVender = (TileEntityVender)tileEntity;
-			return new GuiVender( tileEntityVender );
+			final TileEntityVender vender = (TileEntityVender)tileEntity;
+			return new GuiVender( player.inventory, vender );
 		}
 		return null;
 	}

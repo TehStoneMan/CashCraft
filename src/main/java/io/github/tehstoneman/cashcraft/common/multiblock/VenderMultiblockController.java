@@ -3,6 +3,8 @@ package io.github.tehstoneman.cashcraft.common.multiblock;
 import java.util.logging.Logger;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
+import io.github.tehstoneman.cashcraft.common.block.BlockVender;
+import io.github.tehstoneman.cashcraft.common.block.BlockVender.EnumState;
 import it.zerono.mods.zerocore.api.multiblock.IMultiblockPart;
 import it.zerono.mods.zerocore.api.multiblock.MultiblockControllerBase;
 import it.zerono.mods.zerocore.api.multiblock.rectangular.RectangularMultiblockControllerBase;
@@ -46,7 +48,11 @@ public class VenderMultiblockController extends RectangularMultiblockControllerB
 		if( WORLD.isRemote )
 			markMultiblockForRenderUpdate();
 		else
-			Logger.getLogger( ModInfo.MODID ).info( "Multiblock Assembled" );
+		{
+			for( IMultiblockPart part : this.connectedParts )
+				BlockVender.setState( EnumState.BUILT, WORLD, part.getWorldPosition() );
+			BlockVender.setState( EnumState.MASTER, WORLD, this.getReferenceCoord() );
+		}
 	}
 
 	@Override
@@ -69,7 +75,8 @@ public class VenderMultiblockController extends RectangularMultiblockControllerB
 		if( WORLD.isRemote )
 			markMultiblockForRenderUpdate();
 		else
-			Logger.getLogger( ModInfo.MODID ).info( "Multiblock Disassembled" );
+			for( IMultiblockPart part : this.connectedParts )
+				BlockVender.setState( EnumState.UNBUILT, WORLD, part.getWorldPosition() );
 	}
 
 	@Override

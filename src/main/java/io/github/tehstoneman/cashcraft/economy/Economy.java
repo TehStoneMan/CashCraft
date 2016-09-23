@@ -6,6 +6,7 @@ import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentTranslation;
 
 public class Economy implements IEcomomy
 {
@@ -24,36 +25,36 @@ public class Economy implements IEcomomy
 	}
 
 	@Override
-	public String currency( long amount, boolean longFormat )
+	public String getCurrencyName( long amount, boolean longFormat )
 	{
 		if( amount == 1 )
-			/*if( ModSettings.cashSingular == "" )
+			//if( ModSettings.cashSingular == "" )
 				if( longFormat )
 					if( ModSettings.showAsCoins )
-						return StatCollector.translateToLocal( "economy.cashCraft.coinSingular.long" );
+						return new TextComponentTranslation( "economy.cashCraft.coinSingular.long", new Object[0] ).getUnformattedText();
 					else
-						return StatCollector.translateToLocal( "economy.cashCraft.cashSingular.long" );
+						return new TextComponentTranslation( "economy.cashCraft.cashSingular.long", new Object[0] ).getUnformattedText();
 				else
 					if( ModSettings.showAsCoins )
-						return StatCollector.translateToLocal( "economy.cashCraft.coinSingular.short" );
+						return new TextComponentTranslation( "economy.cashCraft.coinSingular.short", new Object[0] ).getUnformattedText();
 					else
-						return StatCollector.translateToLocal( "economy.cashCraft.cashSingular.short" );
-			else*/
-				return ModSettings.cashSingular;
+						return new TextComponentTranslation( "economy.cashCraft.cashSingular.short", new Object[0] ).getUnformattedText();
+			//else
+				//return ModSettings.cashSingular;
 		else
-			/*if( ModSettings.cashPlural == "" )
+			//if( ModSettings.cashPlural == "" )
 				if( longFormat )
 					if( ModSettings.showAsCoins )
-						return StatCollector.translateToLocal( "economy.cashCraft.coinPlural.long" );
+						return new TextComponentTranslation( "economy.cashCraft.coinPlural.long", new Object[0] ).getUnformattedText();
 					else
-						return StatCollector.translateToLocal( "economy.cashCraft.cashPlural.long" );
+						return new TextComponentTranslation( "economy.cashCraft.cashPlural.long", new Object[0] ).getUnformattedText();
 				else
 					if( ModSettings.showAsCoins )
-						return StatCollector.translateToLocal( "economy.cashCraft.coinPlural.short" );
+						return new TextComponentTranslation( "economy.cashCraft.coinPlural.short", new Object[0] ).getUnformattedText();
 					else
-						return StatCollector.translateToLocal( "economy.cashCraft.cashPlural.short" );
-			else*/
-				return ModSettings.cashPlural;
+						return new TextComponentTranslation( "economy.cashCraft.cashPlural.short", new Object[0] ).getUnformattedText();
+			//else
+				//return ModSettings.cashPlural;
 	}
 
 	@Override
@@ -82,19 +83,19 @@ public class Economy implements IEcomomy
 	@Override
 	public String toString( long amount )
 	{
-		return toString( amount, false );
+		return toString( amount, true );
 	}
 
 	@Override
 	public String toString( long amount, boolean longFormat )
 	{
 		if( ModSettings.showAsCoins )
-			return Long.toString( amount ) + " " + currency( amount, longFormat );
+			return String.format( "%d %s", amount, getCurrencyName( amount, longFormat ) );
 		else
 		{
-			long numerator = amount / 128;
-			long demoninator = amount % 128;
-			return Long.toString( numerator ) + "." + Long.toString( demoninator ) + " " + currency( numerator, longFormat );
+			long numerator = amount / 100;
+			long demoninator = amount % 100;
+			return String.format( "%d.%02d %s", numerator, demoninator, getCurrencyName( numerator, longFormat ) );
 		}
 	}
 }

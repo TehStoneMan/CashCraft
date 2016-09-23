@@ -1,5 +1,9 @@
 package io.github.tehstoneman.cashcraft.common.block;
 
+import javax.annotation.Nullable;
+
+import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
+import io.github.tehstoneman.cashcraft.api.ITrade.EnumTradeType;
 import io.github.tehstoneman.cashcraft.common.multiblock.VenderMultiblockController;
 import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
 import it.zerono.mods.zerocore.api.multiblock.IMultiblockPart;
@@ -16,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -80,27 +86,30 @@ public class BlockVender extends Block
 
 	// Player Interaction
 
-	/*
-	 * @Override
-	 * public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem,
-	 * EnumFacing side, float hitX, float hitY, float hitZ)
-	 * {
-	 * if( !CashCraftAPI.economy.isEnabled() || !( (IExtendedBlockState)getExtendedState( state, worldIn, pos ) ).getValue( BUILT ) )
-	 * return false;
-	 *
-	 * if( worldIn.isRemote )
-	 * return true;
-	 * else
-	 * {
-	 * final TileEntity tileentity = worldIn.getTileEntity( pos );
-	 *
-	 * if( tileentity instanceof TileEntityVender )
-	 * CashCraftAPI.trade.openTradeGui( playerIn, EnumTradeType.OWNER, worldIn, pos );
-	 *
-	 * return true;
-	 * }
-	 * }
-	 */
+	@Override
+	public boolean onBlockActivated( World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,
+			@Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ )
+	{
+		if( !CashCraftAPI.economy.isEnabled() || state.getValue( PROPERTYSTATE ) == EnumState.UNBUILT )
+			return false;
+
+		if( worldIn.isRemote )
+			return true;
+		else
+		{
+			final TileEntity tileentity = worldIn.getTileEntity( pos );
+			if( tileentity instanceof TileEntityVender )
+			{
+				final TileEntityVender vender = (TileEntityVender)tileentity;
+				if( !vender.getMultiblockController().isAssembled() )
+					return false;
+
+				CashCraftAPI.trade.openTradeGui( playerIn, EnumTradeType.OWNER, worldIn, vender.getMultiblockController().getReferenceCoord() );
+			}
+
+			return true;
+		}
+	}
 
 	@Override
 	public void onBlockPlacedBy( World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack )
@@ -111,24 +120,9 @@ public class BlockVender extends Block
 			final TileEntityVender vender = (TileEntityVender)tileEntity;
 			vender.setOwner( (EntityPlayer)placer );
 
-			/*
-			 * if( vender.checkMultiBlockForm())
-			 * {
-			 * vender.setMaster( true );
-			 * vender.setupStructure();
-			 * }
-			 */
+			if( stack.hasDisplayName() )
+				( (TileEntityVender)tileEntity ).setCustomInventoryName( stack.getDisplayName() );
 		}
-
-		/*
-		 * if (stack.hasDisplayName())
-		 * {
-		 *
-		 * {
-		 * ((TileEntityTrade)tileentity).setCustomInventoryName(stack.getDisplayName());
-		 * }
-		 * }
-		 */
 	}
 
 	@Override

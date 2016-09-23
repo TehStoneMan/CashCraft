@@ -1,7 +1,9 @@
 package io.github.tehstoneman.cashcraft.proxies;
 
+import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.client.creativetab.CashCraftTab;
+import io.github.tehstoneman.cashcraft.client.gui.GuiHandler;
 import io.github.tehstoneman.cashcraft.common.block.CashCraftBlocks;
 import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.common.tileentity.TileEntityVender;
@@ -32,7 +34,7 @@ public class CommonProxy
 		simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel( ModInfo.MODID );
 		simpleNetworkWrapper.registerMessage( UpdateMessage.Handler.class, UpdateMessage.class, MESSAGE_ID_UPDATE, Side.SERVER );
 		
-		//NetworkRegistry.INSTANCE.registerGuiHandler( CashCraft.instance, new GuiHandler() );
+		NetworkRegistry.INSTANCE.registerGuiHandler( CashCraft.instance, new GuiHandler() );
 	}
 
 	public void Init()

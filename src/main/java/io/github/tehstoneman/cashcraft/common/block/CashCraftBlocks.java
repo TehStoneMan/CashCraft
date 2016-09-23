@@ -19,7 +19,7 @@ public class CashCraftBlocks
 
 	public static void RegisterBlocks()
 	{
-		blockVender = new BlockVender( Material.WOOD ).setUnlocalizedName( "vender" );
+		blockVender = new BlockVender( Material.WOOD ).setUnlocalizedName( ModInfo.MODID + ".vender" );
 		blockVender.setRegistryName( "vender" );
 		GameRegistry.register( blockVender );
 

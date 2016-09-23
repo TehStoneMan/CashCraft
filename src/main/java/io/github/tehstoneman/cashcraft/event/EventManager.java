@@ -18,7 +18,7 @@ public class EventManager
 		TileEntity tileEntity = world.getTileEntity( event.getPos() );
 		if( tileEntity != null && tileEntity instanceof TileEntityVender )
 		{
-			if( ((TileEntityVender)tileEntity).getOwnderID() != null && !event.getPlayer().getUniqueID().equals( ((TileEntityVender)tileEntity).getOwnderID() ) )
+			if( ((TileEntityVender)tileEntity).getOwnerID() != null && !event.getPlayer().getUniqueID().equals( ((TileEntityVender)tileEntity).getOwnerID() ) )
 				event.setCanceled( true );
 		}
 	}

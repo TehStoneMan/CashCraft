@@ -1,6 +1,9 @@
 package io.github.tehstoneman.cashcraft.economy;
 
+import java.util.logging.Logger;
+
 import io.github.tehstoneman.cashcraft.CashCraft;
+import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.api.ITrade;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 import net.minecraft.entity.player.EntityPlayer;

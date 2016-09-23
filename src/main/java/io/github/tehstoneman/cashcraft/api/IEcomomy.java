@@ -36,7 +36,7 @@ public interface IEcomomy
 	 * @param longFormat
 	 * @return
 	 */
-	public String currency( long amount, boolean longFormat );
+	public String getCurrencyName( long amount, boolean longFormat );
 
 	/**
 	 * Returns the highest stack of cash for the given amount
