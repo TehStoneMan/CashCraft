@@ -2,8 +2,8 @@ package io.github.tehstoneman.cashcraft.economy;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.api.IPlayerWallet;
-import io.github.tehstoneman.cashcraft.item.CashCraftItems;
-import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
+import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -47,7 +47,7 @@ public class PlayerWallet implements IPlayerWallet
 		while( value > 0 )
 		{
 			final ItemStack stackCash = CashCraftAPI.economy.getCash( value );
-			final EntityItem entityitem = player.dropPlayerItemWithRandomChoice( stackCash, false );
+			//final EntityItem entityitem = player.dropPlayerItemWithRandomChoice( stackCash, false );
 			//entityitem.delayBeforeCanPickup = 0;
 			value -= CashCraftAPI.economy.getValue( stackCash );
 		}

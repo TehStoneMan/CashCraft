@@ -1,12 +1,11 @@
 package io.github.tehstoneman.cashcraft.economy;
 
 import io.github.tehstoneman.cashcraft.api.IEcomomy;
-import io.github.tehstoneman.cashcraft.item.CashCraftItems;
-import io.github.tehstoneman.cashcraft.item.ItemCash.EnumCoinValue;
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
+import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 
 public class Economy implements IEcomomy
 {
@@ -28,7 +27,7 @@ public class Economy implements IEcomomy
 	public String currency( long amount, boolean longFormat )
 	{
 		if( amount == 1 )
-			if( ModSettings.cashSingular == "" )
+			/*if( ModSettings.cashSingular == "" )
 				if( longFormat )
 					if( ModSettings.showAsCoins )
 						return StatCollector.translateToLocal( "economy.cashCraft.coinSingular.long" );
@@ -39,10 +38,10 @@ public class Economy implements IEcomomy
 						return StatCollector.translateToLocal( "economy.cashCraft.coinSingular.short" );
 					else
 						return StatCollector.translateToLocal( "economy.cashCraft.cashSingular.short" );
-			else
+			else*/
 				return ModSettings.cashSingular;
 		else
-			if( ModSettings.cashPlural == "" )
+			/*if( ModSettings.cashPlural == "" )
 				if( longFormat )
 					if( ModSettings.showAsCoins )
 						return StatCollector.translateToLocal( "economy.cashCraft.coinPlural.long" );
@@ -53,7 +52,7 @@ public class Economy implements IEcomomy
 						return StatCollector.translateToLocal( "economy.cashCraft.coinPlural.short" );
 					else
 						return StatCollector.translateToLocal( "economy.cashCraft.cashPlural.short" );
-			else
+			else*/
 				return ModSettings.cashPlural;
 	}
 

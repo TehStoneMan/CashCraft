@@ -1,28 +1,26 @@
 //en_US Language file for CashCraft mod
 
-item.cashCraft.cash.coin.one.name=1 coin
-item.cashCraft.cash.coin.two.name=2 coin
-item.cashCraft.cash.coin.four.name=4 coin
-item.cashCraft.cash.coin.eight.name=8 coin
-item.cashCraft.cash.coin.sixteen.name=16 coin
-item.cashCraft.cash.coin.thirtyTwo.name=32 coin
-item.cashCraft.cash.coin.sixtyFour.name=64 coin
-item.cashCraft.cash.note.one.name=1 banknote
-item.cashCraft.cash.note.two.name=2 banknote
-item.cashCraft.cash.note.four.name=4 banknote
-item.cashCraft.cash.note.eight.name=8 banknote
-item.cashCraft.cash.note.sixteen.name=16 banknote
-item.cashCraft.cash.note.thirtyTwo.name=32 banknote
-item.cashCraft.cash.note.sixtyFour.name=64 banknote
-item.cashCraft.cash.note.oneTwoEight.name=128 banknote
+itemGroup.cashcraft=CashCraft
 
-itemGroup.cashCraft=CashCraft
+item.cashcraft.cash.coin.one.name=1 coin
+item.cashcraft.cash.coin.two.name=2 coin
+item.cashcraft.cash.coin.five.name=5 coin
+item.cashcraft.cash.coin.ten.name=10 coin
+item.cashcraft.cash.coin.twenty.name=20 coin
+item.cashcraft.cash.coin.fifty.name=50 coin
+item.cashcraft.cash.note.one.name=1 banknote
+item.cashcraft.cash.note.two.name=2 banknote
+item.cashcraft.cash.note.five.name=5 banknote
+item.cashcraft.cash.note.ten.name=10 banknote
+item.cashcraft.cash.note.twenty.name=20 banknote
+item.cashcraft.cash.note.fifty.name=50 banknote
+item.cashcraft.cash.note.hundred.name=100 banknote
 
-economy.cashCraft.cashSingular.long="Minecraft Cash"
-economy.cashCraft.cashSingular.short="MC"
-economy.cashCraft.cashPlural.long="Minecraft Cash"
-economy.cashCraft.cashPlural.short="MC"
-economy.cashCraft.coinSingular.long="Minecraft Coin"
-economy.cashCraft.coinSingular.short="MC"
-economy.cashCraft.coinPlural.long="Minecraft Coins"
-economy.cashCraft.coinPlural.short="MC"
+economy.cashcraft.cashSingular.long=Minecraft Cash
+economy.cashcraft.cashSingular.short=MC
+economy.cashcraft.cashPlural.long=Minecraft Cash
+economy.cashcraft.cashPlural.short=MC
+economy.cashcraft.coinSingular.long=Minecraft Coin
+economy.cashcraft.coinSingular.short=MC
+economy.cashcraft.coinPlural.long=Minecraft Coins
+economy.cashcraft.coinPlural.short=MC
