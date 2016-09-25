@@ -20,7 +20,7 @@ public class CashCraftTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return new ItemStack( CashCraftItems.itemCoin, 1, EnumCoinValue.COIN_ONE.getMetadata() ).getItem();
+		return CashCraftItems.itemCoin;
 	}
 
 	@Override

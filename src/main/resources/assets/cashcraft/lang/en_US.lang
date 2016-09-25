@@ -1,30 +1,26 @@
 //en_US Language file for CashCraft mod
 
-itemGroup.cashCraft=CashCraft
+itemGroup.cashcraft=CashCraft
 
-item.cashCraft.cash.coin.one.name=1 coin
-item.cashCraft.cash.coin.two.name=2 coin
-item.cashCraft.cash.coin.five.name=5 coin
-item.cashCraft.cash.coin.ten.name=10 coin
-item.cashCraft.cash.coin.twenty.name=20 coin
-item.cashCraft.cash.coin.fifty.name=50 coin
-item.cashCraft.cash.note.one.name=1 banknote
-item.cashCraft.cash.note.two.name=2 banknote
-item.cashCraft.cash.note.five.name=5 banknote
-item.cashCraft.cash.note.ten.name=10 banknote
-item.cashCraft.cash.note.twenty.name=20 banknote
-item.cashCraft.cash.note.fifty.name=50 banknote
-item.cashCraft.cash.note.hundred.name=100 banknote
+item.cashcraft.cash.coin.one.name=1 coin
+item.cashcraft.cash.coin.two.name=2 coin
+item.cashcraft.cash.coin.five.name=5 coin
+item.cashcraft.cash.coin.ten.name=10 coin
+item.cashcraft.cash.coin.twenty.name=20 coin
+item.cashcraft.cash.coin.fifty.name=50 coin
+item.cashcraft.cash.note.one.name=1 banknote
+item.cashcraft.cash.note.two.name=2 banknote
+item.cashcraft.cash.note.five.name=5 banknote
+item.cashcraft.cash.note.ten.name=10 banknote
+item.cashcraft.cash.note.twenty.name=20 banknote
+item.cashcraft.cash.note.fifty.name=50 banknote
+item.cashcraft.cash.note.hundred.name=100 banknote
 
-tile.cashCraft.vender.name=Vender Block
-
-economy.cashCraft.cashSingular.long=Minecraft Cash
-economy.cashCraft.cashSingular.short=MC
-economy.cashCraft.cashPlural.long=Minecraft Cash
-economy.cashCraft.cashPlural.short=MC
-economy.cashCraft.coinSingular.long=Minecraft Coin
-economy.cashCraft.coinSingular.short=MC
-economy.cashCraft.coinPlural.long=Minecraft Coins
-economy.cashCraft.coinPlural.short=MC
-
-container.cashCraft.vender=Vender
+economy.cashcraft.cashSingular.long=Minecraft Cash
+economy.cashcraft.cashSingular.short=MC
+economy.cashcraft.cashPlural.long=Minecraft Cash
+economy.cashcraft.cashPlural.short=MC
+economy.cashcraft.coinSingular.long=Minecraft Coin
+economy.cashcraft.coinSingular.short=MC
+economy.cashcraft.coinPlural.long=Minecraft Coins
+economy.cashcraft.coinPlural.short=MC

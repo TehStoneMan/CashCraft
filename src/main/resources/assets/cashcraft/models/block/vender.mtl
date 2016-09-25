@@ -1,8 +1,0 @@
-# Blender MTL File: 'vender.blend'
-# Material Count: 1
-
-newmtl vender
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-d 0.000000
-map_Kd cashcraft:blocks/vender

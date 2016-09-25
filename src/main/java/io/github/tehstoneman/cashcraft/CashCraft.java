@@ -38,20 +38,6 @@ public class CashCraft
 
 	public ModSettings			modConfig;
 
-	// public static SimpleNetworkWrapper network;
-
-	@EventHandler
-	public void serverLoad( FMLServerStartingEvent event )
-	{
-		// event.registerServerCommand( new CommandCashCraft() );
-		// Economy commands - for testing purposes only
-		// event.registerServerCommand( new CommandWallet() );
-		// event.registerServerCommand( new CommandPay() );
-		// event.registerServerCommand( new CommandBankrupt() );
-		// event.registerServerCommand( new CommandReconcile() );
-		// event.registerServerCommand( new CommandBill() );
-	}
-
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent event )
 	{
