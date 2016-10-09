@@ -63,7 +63,7 @@ public class CashCraft
 		proxy.postInit();
 
 		// Register event handler
-		MinecraftForge.EVENT_BUS.register( new EventManager() );
+		//MinecraftForge.EVENT_BUS.register( new EventManager() );
 	}
 
 	/**

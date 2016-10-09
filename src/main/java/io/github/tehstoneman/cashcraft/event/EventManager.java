@@ -4,5 +4,5 @@ import net.minecraft.client.Minecraft;
 
 public class EventManager
 {
-	private static Minecraft	mc	= Minecraft.getMinecraft();
+	//private static Minecraft	mc	= Minecraft.getMinecraft();
 }
