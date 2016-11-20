@@ -10,9 +10,10 @@ public class ModSettings
 	public static boolean	useEconomy;
 	public static boolean	doMobDrops;
 
+	public static boolean	showAsCoins;
+	public static boolean useCustomName;
 	public static String	cashSingular;
 	public static String	cashPlural;
-	public static boolean	showAsCoins;
 
 	public static boolean	useTrade;
 
@@ -34,10 +35,12 @@ public class ModSettings
 		// Display settings
 		showAsCoins = config.get( "Display", "showAsCoins", false,
 				"Display values in coins instead of cash." ).getBoolean();
-		cashSingular = config.get( "Display", "cashSingular", "",
-				"Override default singular cash unit name." ).getString();
-		cashPlural = config.get( "Display", "cashPlural", "",
-				"Override default plural cash unit name." ).getString();
+		showAsCoins = config.get( "Display", "useCustomName", false,
+				"Use custom currency names instead of default names." ).getBoolean();
+		cashSingular = config.get( "Display", "cashSingular", "%s cash",
+				"Custom singular cash unit name." ).getString();
+		cashPlural = config.get( "Display", "cashPlural", "%s cash",
+				"Custom plural cash unit name." ).getString();
 
 		// Economy settings
 		useTrade = config.get( "Economy", "useTrade", true,

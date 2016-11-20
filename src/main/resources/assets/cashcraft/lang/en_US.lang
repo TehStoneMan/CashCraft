@@ -15,12 +15,19 @@ item.cashcraft.cash.note.ten.name=10 banknote
 item.cashcraft.cash.note.twenty.name=20 banknote
 item.cashcraft.cash.note.fifty.name=50 banknote
 item.cashcraft.cash.note.hundred.name=100 banknote
+item.cashcraft.moneypouch.name=Money Pouch
 
-economy.cashcraft.cashSingular.long=Minecraft Cash
-economy.cashcraft.cashSingular.short=MC
-economy.cashcraft.cashPlural.long=Minecraft Cash
-economy.cashcraft.cashPlural.short=MC
-economy.cashcraft.coinSingular.long=Minecraft Coin
-economy.cashcraft.coinSingular.short=MC
-economy.cashcraft.coinPlural.long=Minecraft Coins
-economy.cashcraft.coinPlural.short=MC
+container.cashcraft.money_pouch=Money Pouch
+
+economy.cashcraft.cashsingular.long=%s Minecraft Cash
+economy.cashcraft.cashsingular.short=MC%s
+economy.cashcraft.cashplural.long=%s Minecraft Cash
+economy.cashcraft.cashplural.short=MC%s
+economy.cashcraft.coinsingular.long=%s Minecraft Coin
+economy.cashcraft.coinsingular.short=%sMC
+economy.cashcraft.coinplural.long=%s Minecraft Coins
+economy.cashcraft.coinplural.short=%sMC
+
+tooltip.cashcraft.contains=Contains: %s
+tooltip.cashcraft.empty=Empty
+tooltip.cashcraft.moneypouch=Right-click in main hand to open

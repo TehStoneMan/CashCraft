@@ -41,9 +41,12 @@ public class ClientProxy extends CommonProxy
 		{
 			final String itemModelName = value.getTextureName();
 			final ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation( CashCraft.modAsset( itemModelName ), "inventory" );
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-				.register( CashCraftItems.itemCoin, value.getMetadata(), itemModelResourceLocation );
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register( CashCraftItems.itemCoin, value.getMetadata(),
+					itemModelResourceLocation );
 		}
+		final ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation( CashCraftItems.itemMoneyPouch.getRegistryName(),
+				"inventory" );
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register( CashCraftItems.itemMoneyPouch, 0, itemModelResourceLocation );
 	}
 
 	@Override

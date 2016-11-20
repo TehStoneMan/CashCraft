@@ -32,11 +32,11 @@ public interface IEcomomy
 	/**
 	 * Get the singular or plural term of the currency used
 	 *
-	 * @param amount
+	 * @param plural
 	 * @param longFormat
-	 * @return
+	 * @return Untranslated name of currency
 	 */
-	public String currency( long amount, boolean longFormat );
+	public String getCurrencyName( boolean plural, boolean longFormat );
 
 	/**
 	 * Returns the highest stack of cash for the given amount
