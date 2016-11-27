@@ -4,6 +4,7 @@ import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.economy.Trade;
 import io.github.tehstoneman.cashcraft.event.EventManager;
+import io.github.tehstoneman.cashcraft.network.SyncConfigMessage;
 import io.github.tehstoneman.cashcraft.proxies.CommonProxy;
 import io.github.tehstoneman.cashcraft.util.ModSettings;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +17,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 //@formatter:off
 @Mod(	modid						= ModInfo.MODID,
@@ -36,7 +40,13 @@ public class CashCraft
 	@SidedProxy( clientSide = ModInfo.PROXY_LOCATION + "ClientProxy", serverSide = ModInfo.PROXY_LOCATION + "CommonProxy" )
 	public static CommonProxy	proxy;
 
-	public ModSettings			modConfig;
+	// GUI ID's
+	public static final int GUI_MONEY_POUCH = 0;
+
+	// Networking
+	public static SimpleNetworkWrapper simpleNetworkWrapper;
+	
+	public static final byte MESSAGE_ID_UPDATE = 1;
 
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent event )
@@ -45,6 +55,10 @@ public class CashCraft
 		ModSettings.init( event.getSuggestedConfigurationFile() );
 
 		proxy.preInit();
+		
+		// Register network messages
+		simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel( ModInfo.MODID );
+		simpleNetworkWrapper.registerMessage( SyncConfigMessage.Handler.class, SyncConfigMessage.class, MESSAGE_ID_UPDATE, Side.CLIENT );
 
 		// Initialize API
 		CashCraftAPI.economy = new Economy();
@@ -63,7 +77,7 @@ public class CashCraft
 		proxy.postInit();
 
 		// Register event handler
-		//MinecraftForge.EVENT_BUS.register( new EventManager() );
+		MinecraftForge.EVENT_BUS.register( new EventManager() );
 	}
 
 	/**
