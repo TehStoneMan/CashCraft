@@ -47,6 +47,10 @@ public class ModSettings
 				"Eneables the internal trading module." ).getBoolean();
 		//@formatter:on
 
+		// Economy settings
+		useTrade = config.get( "Economy", "useTrade", true,
+				"Eneables the internal trading module." ).getBoolean();
+
 		config.save();
 	}
 }
