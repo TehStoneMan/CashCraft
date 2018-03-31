@@ -98,7 +98,7 @@ public class EventManager
 	@SubscribeEvent
 	public void onPlayerJoinEvent( PlayerLoggedInEvent event )
 	{
-		if( !event.player.worldObj.isRemote )
+		if( !event.player.world.isRemote )
 		{
 			final SyncConfigMessage message = new SyncConfigMessage( ModSettings.showAsCoins, ModSettings.useCustomName, ModSettings.cashSingular,
 					ModSettings.cashPlural );

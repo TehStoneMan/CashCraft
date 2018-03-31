@@ -8,6 +8,7 @@ import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class CashCraftTab extends CreativeTabs
 {
@@ -18,13 +19,13 @@ public class CashCraftTab extends CreativeTabs
 	}
 
 	@Override
-	public Item getTabIconItem()
+	public ItemStack getTabIconItem()
 	{
-		return CashCraftItems.itemCoin;
+		return new ItemStack( CashCraftItems.itemCoin );
 	}
 
 	@Override
-	public void displayAllRelevantItems( List itemsToShowOnTab )
+	public void displayAllRelevantItems( NonNullList<ItemStack> itemsToShowOnTab )
 	{
 		for( final Object itemObject : Item.REGISTRY )
 		{

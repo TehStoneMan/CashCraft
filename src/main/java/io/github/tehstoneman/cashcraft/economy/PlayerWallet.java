@@ -62,19 +62,19 @@ public class PlayerWallet implements IPlayerWallet
 		int cashValue = EnumCoinValue.values().length;
 		while( cashValue > 0 )
 		{
-			for( int i = 0; i < player.inventory.mainInventory.length; i++ )
+			for( int i = 0; i < player.inventory.mainInventory.size(); i++ )
 			{
-				final ItemStack itemStack = player.inventory.mainInventory[i];
+				final ItemStack itemStack = player.inventory.mainInventory.get( i );
 				if( itemStack != null && itemStack.getItem() == CashCraftItems.itemCoin && itemStack.getItemDamage() == cashValue - 1 )
 				{
 					int count = (int)( value / EnumCoinValue.byMetadata( cashValue - 1 ).getValue() );
-					if( itemStack.stackSize <= count )
+					if( itemStack.getCount() <= count )
 					{
-						count = itemStack.stackSize;
-						player.inventory.mainInventory[i] = null;
+						count = itemStack.getCount();
+						player.inventory.mainInventory.set( i, ItemStack.EMPTY );
 					}
 					else
-						player.inventory.mainInventory[i].stackSize -= count;
+						player.inventory.decrStackSize( i, count );
 					value -= EnumCoinValue.byMetadata( cashValue - 1 ).getValue() * count;
 				}
 			}
@@ -89,11 +89,11 @@ public class PlayerWallet implements IPlayerWallet
 		// Loop through player's inventory and remove cash items
 		final InventoryPlayer inventory = player.inventory;
 
-		for( int i = 0; i < inventory.mainInventory.length; i++ )
+		for( int i = 0; i < inventory.mainInventory.size(); i++ )
 		{
-			final ItemStack itemStack = inventory.mainInventory[i];
+			final ItemStack itemStack = inventory.mainInventory.get( i );
 			if( itemStack != null && itemStack.getItem() == CashCraftItems.itemCoin )
-				inventory.mainInventory[i] = null;
+				inventory.mainInventory.set( i, ItemStack.EMPTY );
 		}
 
 		amount = 0;

@@ -2,6 +2,8 @@ package io.github.tehstoneman.cashcraft.command;
 
 import java.util.List;
 
+import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -12,42 +14,48 @@ import net.minecraft.util.math.BlockPos;
 public class CommandPay implements ICommand
 {
 	@Override
-	public String getCommandName()
+	public String getName()
 	{
 		// TODO Auto-generated method stub
 		return "pay";
 	}
 
 	@Override
-	public String getCommandUsage( ICommandSender p_71518_1_ )
+	public String getUsage( ICommandSender p_71518_1_ )
 	{
 		// TODO Auto-generated method stub
 		return "pay";
 	}
 
 	@Override
-	public List getCommandAliases()
+	public List getAliases()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-/*	@Override
-	public void processCommand( ICommandSender sender, String[] args )
+	@Override
+	public void execute( MinecraftServer server, ICommandSender sender, String[] args ) throws CommandException
 	{
 		final EntityPlayer player = (EntityPlayer)sender;
-		//final int amount = CommandBase.parseInt( sender, args[0] );
-		//CashCraftAPI.economy.getWallet( player ).deposit( amount );
+		final int amount = CommandBase.parseInt( args[0] );
+		CashCraftAPI.economy.getWallet( player ).deposit( amount );
 	}
-*/
 
-/*	@Override
-	public boolean canCommandSenderUseCommand( ICommandSender p_71519_1_ )
+	@Override
+	public boolean checkPermission( MinecraftServer server, ICommandSender sender )
 	{
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
-*/
+
+	@Override
+	public List< String > getTabCompletions( MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos )
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public boolean isUsernameIndex( String[] p_82358_1_, int p_82358_2_ )
 	{
@@ -60,36 +68,6 @@ public class CommandPay implements ICommand
 	{
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	/*
-	@Override
-	public List< String > addTabCompletionOptions( ICommandSender sender, String[] args, BlockPos pos )
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
-
-	@Override
-	public void execute( MinecraftServer server, ICommandSender sender, String[] args ) throws CommandException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean checkPermission( MinecraftServer server, ICommandSender sender )
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List< String > getTabCompletionOptions( MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos )
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

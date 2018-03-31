@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,7 +33,7 @@ public class ItemCash extends Item
 
 	@Override
 	@SideOnly( Side.CLIENT )
-	public void getSubItems( Item item, CreativeTabs tab, List subItems )
+	public void getSubItems( Item item, CreativeTabs tab, NonNullList<ItemStack> subItems )
 	{
 		for( final EnumCoinValue values : EnumCoinValue.values() )
 		{

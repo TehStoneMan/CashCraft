@@ -45,8 +45,8 @@ public class InventoryMoneyPouch extends InventoryBasic
 			final NBTTagCompound item = items.getCompoundTagAt( i );
 			final int slot = item.getInteger( "Slot" );
 
-			if( slot >= 0 && slot < getSizeInventory() )
-				setInventorySlotContents( slot, ItemStack.loadItemStackFromNBT( item ) );
+			/*if( slot >= 0 && slot < getSizeInventory() )
+				setInventorySlotContents( slot, ItemStack.loadItemStackFromNBT( item ) );*/
 		}
 	}
 

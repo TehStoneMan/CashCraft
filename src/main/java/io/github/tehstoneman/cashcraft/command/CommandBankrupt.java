@@ -13,43 +13,43 @@ import net.minecraft.util.math.BlockPos;
 public class CommandBankrupt implements ICommand
 {
 	@Override
-	public String getCommandName()
+	public String getName()
 	{
-		// TODO Auto-generated method stub
 		return "bankrupt";
 	}
 
 	@Override
-	public String getCommandUsage( ICommandSender p_71518_1_ )
+	public String getUsage( ICommandSender p_71518_1_ )
 	{
-		// TODO Auto-generated method stub
 		return "/bankrupt";
 	}
 
 	@Override
-	public List getCommandAliases()
+	public List< String > getAliases()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/*
 	@Override
-	public void processCommand( ICommandSender sender, String[] args )
+	public void execute( MinecraftServer server, ICommandSender sender, String[] args ) throws CommandException
 	{
 		final EntityPlayer player = (EntityPlayer)sender;
 		CashCraftAPI.economy.getWallet( player ).empty();
 	}
-	*/
 
-	/*
 	@Override
-	public boolean canCommandSenderUseCommand( ICommandSender p_71519_1_ )
+	public boolean checkPermission( MinecraftServer server, ICommandSender sender )
 	{
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
-	*/
+	@Override
+	public List< String > getTabCompletions( MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos )
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public boolean isUsernameIndex( String[] p_82358_1_, int p_82358_2_ )
@@ -64,35 +64,4 @@ public class CommandBankrupt implements ICommand
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	/*
-	@Override
-	public List< String > addTabCompletionOptions( ICommandSender sender, String[] args, BlockPos pos )
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
-
-	@Override
-	public void execute( MinecraftServer server, ICommandSender sender, String[] args ) throws CommandException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean checkPermission( MinecraftServer server, ICommandSender sender )
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List< String > getTabCompletionOptions( MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos )
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

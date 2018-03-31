@@ -74,7 +74,7 @@ public class Economy implements IEcomomy
 	@Override
 	public long getValue( ItemStack itemStack )
 	{
-		final int count = itemStack.stackSize;
+		final int count = itemStack.getCount();
 		final int value = EnumCoinValue.byMetadata( itemStack.getItemDamage() ).getValue();
 
 		return count * value;

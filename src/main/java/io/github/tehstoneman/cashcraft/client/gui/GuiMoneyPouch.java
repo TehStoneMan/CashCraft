@@ -20,7 +20,7 @@ public class GuiMoneyPouch extends GuiContainer
 
 	public GuiMoneyPouch( IInventory inventoryPlayer, IInventory inventoryMoneyPouch )
 	{
-		super( new ContainerMoneyPouch( inventoryPlayer, inventoryMoneyPouch, Minecraft.getMinecraft().thePlayer ) );
+		super( new ContainerMoneyPouch( inventoryPlayer, inventoryMoneyPouch, Minecraft.getMinecraft().player ) );
 		this.inventoryMoneyPouch = inventoryMoneyPouch;
 		this.inventoryPlayer = inventoryPlayer;
 		xSize = 176;

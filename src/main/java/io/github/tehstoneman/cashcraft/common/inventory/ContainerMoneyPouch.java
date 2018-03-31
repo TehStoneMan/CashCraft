@@ -43,7 +43,7 @@ public class ContainerMoneyPouch extends Container
 	@Override
 	public boolean canInteractWith( EntityPlayer playerIn )
 	{
-		return inventoryMoneyPouch.isUseableByPlayer( playerIn );
+		return inventoryMoneyPouch.isUsableByPlayer( playerIn );
 	}
 
 	@Override
@@ -86,15 +86,15 @@ public class ContainerMoneyPouch extends Container
 								return null;
 			}
 
-			if( itemStack1.stackSize == 0 )
+			if( itemStack1.getCount() == 0 )
 				slot.putStack( (ItemStack)null );
 			else
 				slot.onSlotChanged();
 
-			if( itemStack1.stackSize == itemStack.stackSize )
+			if( itemStack1.getCount() == itemStack.getCount() )
 				return null;
 
-			slot.onPickupFromSlot( playerIn, itemStack1 );
+			//slot.onPickupFromSlot( playerIn, itemStack1 );
 		}
 		return itemStack;
 	}
