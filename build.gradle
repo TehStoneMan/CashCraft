@@ -12,7 +12,7 @@ buildscript
     }
     dependencies
     {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -30,11 +30,14 @@ configFile.withReader
 
 archivesBaseName = "CashCraft"
 group = "io.github.tehstoneman.cashcraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-version = "mc${config.minecraft_version}-${config.mod_major_version}.${config.api_major_version}.${config.minor_version}.${config.patch_version}"
+version = "${config.minecraft_version}-${config.mod_major_version}.${config.api_major_version}.${config.minor_version}.${config.patch_version}"
 
 // java version
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+compileJava
+{
+	sourceCompatibility = targetCompatibility = '1.8'
+	options.compilerArgs << '-Xlint:unchecked'
+}
 
 minecraft
 {
@@ -51,6 +54,14 @@ minecraft
 	}
 
     mappings = "${config.mappings_version}"
+
+    replaceIn "src/main/java/io/github/tehstoneman/cashcraft/ModInfo.java"
+    replace "@minecraft_version@", config.minecraft_version
+    replace "@mod_major_version@", config.mod_major_version
+    replace "@api_major_version@", config.api_major_version
+    replace "@minor_version@", config.minor_version
+    replace "@patch_version@", config.patch_version
+    replace "@forge_version@", config.forge_version
 }
 
 sourceSets
@@ -79,7 +90,7 @@ processResources
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':project.version, 'mc_version':project.minecraft.version
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
     // copy everything else, thats not the mcmod.info

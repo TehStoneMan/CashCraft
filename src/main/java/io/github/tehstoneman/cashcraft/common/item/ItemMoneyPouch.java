@@ -1,12 +1,15 @@
 package io.github.tehstoneman.cashcraft.common.item;
 
 import java.util.List;
+import java.util.logging.Logger;
+
+import javax.annotation.Nullable;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
+import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -22,18 +25,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class ItemMoneyPouch extends Item
+public class ItemMoneyPouch extends ItemCashCraft
 {
 	public ItemMoneyPouch()
 	{
-		super();
+		super( "moneypouch" );
+		setMaxDamage( 0 );
 		setMaxStackSize( 1 );
 	}
 
 	@Override
-	public ICapabilityProvider initCapabilities( ItemStack stack, NBTTagCompound nbt )
+	public ICapabilityProvider initCapabilities( ItemStack stack, @Nullable NBTTagCompound nbt )
 	{
-		return new MoneyPouchProvider();
+		return new MoneyPouchProvider( stack );
 	}
 
 	@Override
@@ -41,43 +45,49 @@ public class ItemMoneyPouch extends Item
 	{
 		if( !worldIn.isRemote && hand == EnumHand.MAIN_HAND )
 			playerIn.openGui( CashCraft.instance, CashCraft.GUI_MONEY_POUCH, worldIn, 0, 0, 0 );
-		return new ActionResult( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
+		return new ActionResult<ItemStack>( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
 	}
 
 	// adds 'tooltip' text
+
 	@SideOnly( Side.CLIENT )
 	@Override
-	public void addInformation( ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced )
+	public void addInformation( ItemStack stack, @Nullable World worldIn, List< String > tooltip, ITooltipFlag flagIn )
 	{
 		final NBTTagCompound nbtTagCompound = stack.getTagCompound();
 		if( nbtTagCompound != null && nbtTagCompound.hasKey( "Value" ) )
 		{
 			final String v = CashCraftAPI.economy.toString( nbtTagCompound.getInteger( "Value" ), false );
-			final String s = I18n.format( "tooltip.cashcraft.contains", v );
+			final String s = CashCraft.proxy.localize( "tooltip.cashcraft.contains", v );
 			tooltip.add( s );
 		}
 		else
-			tooltip.add( I18n.format( "tooltip.cashcraft.empty" ) );
-		tooltip.add( I18n.format( "tooltip.cashcraft.moneypouch" ) );
+			tooltip.add( CashCraft.proxy.localize( "tooltip.cashcraft.empty" ) );
+		tooltip.add( CashCraft.proxy.localize( "tooltip.cashcraft.moneypouch" ) );
 	}
 
-	public static class MoneyPouchProvider implements ICapabilitySerializable< NBTTagCompound >
+	private static class MoneyPouchProvider implements ICapabilitySerializable< NBTTagCompound >
 	{
-		public ItemStackHandler inventory;
+		private final ItemStack	invItem;
+		private ItemStackHandler	inventory;
 
-		public MoneyPouchProvider()
+		private MoneyPouchProvider( ItemStack stack )
 		{
-			inventory = new ItemStackHandler( 15 );
-			/*
-			 * {
-			 * 
-			 * @Override
-			 * protected void onContentsChanged( int slot )
-			 * {
-			 * TileEntityContainer.this.markDirty();
-			 * }
-			 * };
-			 */
+			invItem = stack;
+			final int size = getSizeContents();
+			if( size > 0 )
+				inventory = new ItemStackHandler( size )
+
+				{
+
+					@Override
+					protected void onContentsChanged( int slot )
+					{
+						MoneyPouchProvider.this.markDirty();
+					}
+				};
+			else
+				inventory = null;
 		}
 
 		@Override
@@ -89,28 +99,49 @@ public class ItemMoneyPouch extends Item
 		@Override
 		public <T> T getCapability( Capability< T > capability, EnumFacing facing )
 		{
-			if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+			if( capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY )
 				return (T)inventory;
 			return null;
+		}
+
+		private int getSizeContents()
+		{
+			return 15;
+		}
+
+		private void markDirty()
+		{
+			int count = 0;
+			for( int i = 0; i < inventory.getSlots(); i++ )
+				if( !inventory.getStackInSlot( i ).isEmpty() )
+					count++;
+			invItem.setItemDamage( (int)Math.ceil( count / 3.0 ) );
 		}
 
 		@Override
 		public NBTTagCompound serializeNBT()
 		{
-			if( inventory != null )
-			{
-				final NBTTagCompound compound = new NBTTagCompound();
-				compound.setTag( "Inventory", inventory.serializeNBT() );
-				return compound;
-			}
-			return null;
+			NBTTagCompound compound = new NBTTagCompound();
+			if( invItem.hasTagCompound() )
+				compound = invItem.getTagCompound();
+			compound.setLong( "Value", getValue() );
+			invItem.setTagCompound( compound );
+			return inventory.serializeNBT();
 		}
 
 		@Override
 		public void deserializeNBT( NBTTagCompound compound )
 		{
-			if( compound.hasKey( "Inventory" ) )
-				inventory.deserializeNBT( compound.getCompoundTag( "Inventory" ) );
+			inventory.deserializeNBT( compound );
 		}
-	}
+
+		public long getValue()
+		{
+			long value = 0;
+			for( int i = 0; i < inventory.getSlots(); ++i )
+				if( !inventory.getStackInSlot( i ).isEmpty() )
+					value += CashCraftAPI.economy.getValue( inventory.getStackInSlot( i ) );
+			return value;
+		}
+}
 }

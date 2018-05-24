@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.lwjgl.opengl.GL11;
 
+import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
 import net.minecraft.client.Minecraft;
@@ -11,18 +12,16 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiMoneyPouch extends GuiContainer
+class GuiMoneyPouch extends GuiContainer
 {
 	private static final ResourceLocation	GUI_MONEYPOUCH	= new ResourceLocation( ModInfo.MODID, "textures/gui/moneypouch.png" );
 
-	IInventory								inventoryMoneyPouch;
-	IInventory								inventoryPlayer;
+	public ContainerMoneyPouch container;
 
-	public GuiMoneyPouch( IInventory inventoryPlayer, IInventory inventoryMoneyPouch )
+	GuiMoneyPouch( ContainerMoneyPouch container )
 	{
-		super( new ContainerMoneyPouch( inventoryPlayer, inventoryMoneyPouch, Minecraft.getMinecraft().player ) );
-		this.inventoryMoneyPouch = inventoryMoneyPouch;
-		this.inventoryPlayer = inventoryPlayer;
+		super( container );
+		this.container = container;
 		xSize = 176;
 		ySize = 169;
 	}
@@ -30,8 +29,8 @@ public class GuiMoneyPouch extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer( int mouseX, int mouseY )
 	{
-		fontRendererObj.drawString( inventoryMoneyPouch.getDisplayName().getUnformattedText(), 8, 6, 4210752 );
-		fontRendererObj.drawString( inventoryPlayer.getDisplayName().getUnformattedText(), 8, ySize - 96 + 2, 4210752 );
+		fontRenderer.drawString( CashCraft.proxy.localize( "container.cashcraft.money_pouch" ), 8, 6, 0x404040 );
+		fontRenderer.drawString( CashCraft.proxy.localize( "container.inventory" ), 8, ySize - 96 + 2, 0x404040 );
 	}
 
 	@Override

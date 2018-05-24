@@ -1,6 +1,6 @@
 package io.github.tehstoneman.cashcraft.network;
 
-import io.github.tehstoneman.cashcraft.util.ModSettings;
+import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -19,10 +19,10 @@ public class SyncConfigMessage implements IMessage
 
 	public SyncConfigMessage()
 	{
-		showAsCoins = ModSettings.showAsCoins;
-		useCustomName = ModSettings.useCustomName;
-		cashSingular = ModSettings.cashSingular;
-		cashPlural = ModSettings.cashPlural;
+		showAsCoins = CashCraftConfig.showAsCoins;
+		useCustomName = CashCraftConfig.useCustomName;
+		cashSingular = CashCraftConfig.cashSingular;
+		cashPlural = CashCraftConfig.cashPlural;
 	}
 
 	public SyncConfigMessage( boolean showAsCoins, boolean useCustomName, String cashSingular, String cashPlural )
@@ -80,10 +80,10 @@ public class SyncConfigMessage implements IMessage
 
 		void processMessage( WorldClient worldClient, SyncConfigMessage message )
 		{
-			ModSettings.showAsCoins = message.showAsCoins;
-			ModSettings.useCustomName = message.useCustomName;
-			ModSettings.cashSingular = message.cashSingular;
-			ModSettings.cashPlural = message.cashPlural;
+			CashCraftConfig.showAsCoins = message.showAsCoins;
+			CashCraftConfig.useCustomName = message.useCustomName;
+			CashCraftConfig.cashSingular = message.cashSingular;
+			CashCraftConfig.cashPlural = message.cashPlural;
 		}
 	}
 }

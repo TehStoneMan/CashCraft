@@ -2,6 +2,7 @@ package io.github.tehstoneman.cashcraft.common.item;
 
 import java.util.List;
 
+import io.github.tehstoneman.cashcraft.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,10 +10,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemCash extends Item
+public class ItemCash extends ItemCashCraft
 {
 	public ItemCash()
 	{
+		super( "cash" );
 		setHasSubtypes( true );
 		setMaxDamage( 0 );
 	}
@@ -33,12 +35,12 @@ public class ItemCash extends Item
 
 	@Override
 	@SideOnly( Side.CLIENT )
-	public void getSubItems( Item item, CreativeTabs tab, NonNullList<ItemStack> subItems )
+	public void getSubItems( CreativeTabs tab, NonNullList<ItemStack> subItems )
 	{
 		for( final EnumCoinValue values : EnumCoinValue.values() )
 		{
 			final int metadata = values.getMetadata();
-			final ItemStack subItemStack = new ItemStack( item, 1, metadata );
+			final ItemStack subItemStack = new ItemStack( this, 1, metadata );
 			subItems.add( subItemStack );
 		}
 	}

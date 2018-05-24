@@ -4,17 +4,18 @@ import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.api.IPlayerWallet;
 import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
+import io.github.tehstoneman.cashcraft.common.item.ItemCashCraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 
-public class PlayerWallet implements IPlayerWallet
+class PlayerWallet implements IPlayerWallet
 {
 	private long				amount;
 	private final EntityPlayer	player;
 
-	public PlayerWallet( EntityPlayer player )
+	PlayerWallet( EntityPlayer player )
 	{
 		amount = 0;
 
@@ -65,7 +66,7 @@ public class PlayerWallet implements IPlayerWallet
 			for( int i = 0; i < player.inventory.mainInventory.size(); i++ )
 			{
 				final ItemStack itemStack = player.inventory.mainInventory.get( i );
-				if( itemStack != null && itemStack.getItem() == CashCraftItems.itemCoin && itemStack.getItemDamage() == cashValue - 1 )
+				if( itemStack != null && itemStack.getItem() == ItemCashCraft.COIN && itemStack.getItemDamage() == cashValue - 1 )
 				{
 					int count = (int)( value / EnumCoinValue.byMetadata( cashValue - 1 ).getValue() );
 					if( itemStack.getCount() <= count )
@@ -92,7 +93,7 @@ public class PlayerWallet implements IPlayerWallet
 		for( int i = 0; i < inventory.mainInventory.size(); i++ )
 		{
 			final ItemStack itemStack = inventory.mainInventory.get( i );
-			if( itemStack != null && itemStack.getItem() == CashCraftItems.itemCoin )
+			if( itemStack != null && itemStack.getItem() == ItemCashCraft.COIN )
 				inventory.mainInventory.set( i, ItemStack.EMPTY );
 		}
 
