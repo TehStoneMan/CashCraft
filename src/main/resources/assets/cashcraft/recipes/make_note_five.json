@@ -1,0 +1,11 @@
+{
+	"type": "forge:ore_shapeless",
+	"group": "cash",
+	"ingredients":
+	[
+		{ "item": "cashcraft:cash", "data": 6 },
+		{ "item": "cashcraft:cash", "data": 7 },
+		{ "item": "cashcraft:cash", "data": 7 }
+	],
+	"result": { "item": "cashcraft:cash", "data": 8 }
+}

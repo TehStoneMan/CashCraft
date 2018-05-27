@@ -1,12 +1,10 @@
 package io.github.tehstoneman.cashcraft.common.item;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
-import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +43,7 @@ public class ItemMoneyPouch extends ItemCashCraft
 	{
 		if( !worldIn.isRemote && hand == EnumHand.MAIN_HAND )
 			playerIn.openGui( CashCraft.instance, CashCraft.GUI_MONEY_POUCH, worldIn, 0, 0, 0 );
-		return new ActionResult<ItemStack>( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
+		return new ActionResult< >( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
 	}
 
 	// adds 'tooltip' text
@@ -68,7 +66,7 @@ public class ItemMoneyPouch extends ItemCashCraft
 
 	private static class MoneyPouchProvider implements ICapabilitySerializable< NBTTagCompound >
 	{
-		private final ItemStack	invItem;
+		private final ItemStack		invItem;
 		private ItemStackHandler	inventory;
 
 		private MoneyPouchProvider( ItemStack stack )
@@ -143,5 +141,5 @@ public class ItemMoneyPouch extends ItemCashCraft
 					value += CashCraftAPI.economy.getValue( inventory.getStackInSlot( i ) );
 			return value;
 		}
-}
+	}
 }

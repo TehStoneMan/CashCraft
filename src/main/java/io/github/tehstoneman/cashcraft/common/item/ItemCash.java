@@ -1,10 +1,6 @@
 package io.github.tehstoneman.cashcraft.common.item;
 
-import java.util.List;
-
-import io.github.tehstoneman.cashcraft.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +14,7 @@ public class ItemCash extends ItemCashCraft
 		setHasSubtypes( true );
 		setMaxDamage( 0 );
 	}
-	
+
 	@Override
 	public int getMetadata( int damage )
 	{
@@ -35,14 +31,15 @@ public class ItemCash extends ItemCashCraft
 
 	@Override
 	@SideOnly( Side.CLIENT )
-	public void getSubItems( CreativeTabs tab, NonNullList<ItemStack> subItems )
+	public void getSubItems( CreativeTabs tab, NonNullList< ItemStack > subItems )
 	{
-		for( final EnumCoinValue values : EnumCoinValue.values() )
-		{
-			final int metadata = values.getMetadata();
-			final ItemStack subItemStack = new ItemStack( this, 1, metadata );
-			subItems.add( subItemStack );
-		}
+		if( isInCreativeTab( tab ) )
+			for( final EnumCoinValue values : EnumCoinValue.values() )
+			{
+				final int metadata = values.getMetadata();
+				final ItemStack subItemStack = new ItemStack( this, 1, metadata );
+				subItems.add( subItemStack );
+			}
 	}
 
 	public int getValue()

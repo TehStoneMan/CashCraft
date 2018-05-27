@@ -1,0 +1,15 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern":
+	[
+		"S S",
+		"L L",
+		" L "
+	],
+	"key":
+	{
+		"S": { "type": "forge:ore_dict", "ore": "string" },
+		"L": { "type": "forge:ore_dict", "ore": "leather" }
+	},
+	"result": { "item": "cashcraft:moneypouch" }
+}
