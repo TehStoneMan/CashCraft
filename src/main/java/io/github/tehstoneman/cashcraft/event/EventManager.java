@@ -4,7 +4,6 @@ import java.util.Random;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.common.item.ItemCash;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import io.github.tehstoneman.cashcraft.common.item.ItemCashCraft;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
@@ -12,29 +11,12 @@ import io.github.tehstoneman.cashcraft.network.SyncConfigMessage;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -62,6 +44,7 @@ public class EventManager
 		registerItemModel( ItemCashCraft.MONEY_POUCH );
 	}
 
+	/*
 	@SubscribeEvent
 	public void onLivingDropsEvent( LivingDropsEvent event )
 	{
@@ -119,6 +102,7 @@ public class EventManager
 			}
 		}
 	}
+	*/
 
 	@SubscribeEvent
 	public void onPlayerJoinEvent( PlayerLoggedInEvent event )

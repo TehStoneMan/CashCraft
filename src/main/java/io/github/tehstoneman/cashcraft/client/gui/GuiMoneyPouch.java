@@ -1,22 +1,18 @@
 package io.github.tehstoneman.cashcraft.client.gui;
 
-import java.util.logging.Logger;
-
 import org.lwjgl.opengl.GL11;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 
 class GuiMoneyPouch extends GuiContainer
 {
 	private static final ResourceLocation	GUI_MONEYPOUCH	= new ResourceLocation( ModInfo.MODID, "textures/gui/moneypouch.png" );
 
-	public ContainerMoneyPouch container;
+	public ContainerMoneyPouch				container;
 
 	GuiMoneyPouch( ContainerMoneyPouch container )
 	{
@@ -24,6 +20,14 @@ class GuiMoneyPouch extends GuiContainer
 		this.container = container;
 		xSize = 176;
 		ySize = 169;
+	}
+
+	@Override
+	public void drawScreen( int mouseX, int mouseY, float partialTicks )
+	{
+		drawDefaultBackground();
+		super.drawScreen( mouseX, mouseY, partialTicks );
+		renderHoveredToolTip( mouseX, mouseY );
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class CommandWallet implements ICommand
 	}
 
 	@Override
-	public List getAliases()
+	public List<String> getAliases()
 	{
 		// TODO Auto-generated method stub
 		return null;

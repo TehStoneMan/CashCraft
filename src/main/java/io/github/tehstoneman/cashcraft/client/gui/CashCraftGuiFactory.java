@@ -44,7 +44,7 @@ public class CashCraftGuiFactory implements IModGuiFactory
 	{
 		private CashCraftConfigGui( GuiScreen parentScreen )
 		{
-			super( parentScreen, getConfigElements(), ModInfo.MODID, false, false, CashCraft.proxy.localize( "gui.cashcraft.config.title" ) );
+			super( parentScreen, getConfigElements(), ModInfo.MODID, false, false, CashCraft.proxy.localize( "config.cashcraft.config.title" ) );
 		}
 
 		private static List< IConfigElement > getConfigElements()
@@ -57,8 +57,8 @@ public class CashCraftGuiFactory implements IModGuiFactory
 			final ConfigElement economyConfig = new ConfigElement( config.getCategory( CashCraftConfig.CATEGORY_ECONOMY ) );
 
 			listConfigElements.addAll( generalConfig.getChildElements() );
-			listConfigElements.add( new DummyCategoryElement( "display", "gui.cashcraft.config.display", displayConfig.getChildElements() ) );
-			listConfigElements.add( new DummyCategoryElement( "economy", "gui.cashcraft.config.economy", economyConfig.getChildElements() ) );
+			listConfigElements.add( new DummyCategoryElement( "display", "config.cashcraft.config.display", displayConfig.getChildElements() ) );
+			listConfigElements.add( new DummyCategoryElement( "economy", "config.cashcraft.config.economy", economyConfig.getChildElements() ) );
 
 			return listConfigElements;
 		}

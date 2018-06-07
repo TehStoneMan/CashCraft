@@ -43,7 +43,7 @@ public class ItemMoneyPouch extends ItemCashCraft
 	{
 		if( !worldIn.isRemote && hand == EnumHand.MAIN_HAND )
 			playerIn.openGui( CashCraft.instance, CashCraft.GUI_MONEY_POUCH, worldIn, 0, 0, 0 );
-		return new ActionResult< >( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
+		return new ActionResult<>( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
 	}
 
 	// adds 'tooltip' text
@@ -56,6 +56,7 @@ public class ItemMoneyPouch extends ItemCashCraft
 		if( nbtTagCompound != null && nbtTagCompound.hasKey( "Value" ) )
 		{
 			final String v = CashCraftAPI.economy.toString( nbtTagCompound.getInteger( "Value" ), false );
+			// final String v = CashCraftAPI.economy.toString( stack.getItemDamage(), false );
 			final String s = CashCraft.proxy.localize( "tooltip.cashcraft.contains", v );
 			tooltip.add( s );
 		}
@@ -75,13 +76,12 @@ public class ItemMoneyPouch extends ItemCashCraft
 			final int size = getSizeContents();
 			if( size > 0 )
 				inventory = new ItemStackHandler( size )
-
 				{
-
 					@Override
 					protected void onContentsChanged( int slot )
 					{
-						MoneyPouchProvider.this.markDirty();
+						// invItem.setItemDamage( (int)getValue() );
+						// MoneyPouchProvider.this.markDirty();
 					}
 				};
 			else
@@ -97,9 +97,8 @@ public class ItemMoneyPouch extends ItemCashCraft
 		@Override
 		public <T> T getCapability( Capability< T > capability, EnumFacing facing )
 		{
-			if( capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY )
-				return (T)inventory;
-			return null;
+			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast( inventory )
+					: null;
 		}
 
 		private int getSizeContents()
@@ -113,7 +112,7 @@ public class ItemMoneyPouch extends ItemCashCraft
 			for( int i = 0; i < inventory.getSlots(); i++ )
 				if( !inventory.getStackInSlot( i ).isEmpty() )
 					count++;
-			invItem.setItemDamage( (int)Math.ceil( count / 3.0 ) );
+			invItem.setItemDamage( (int)getValue() );
 		}
 
 		@Override
