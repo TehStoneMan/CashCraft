@@ -1,6 +1,8 @@
 package io.github.tehstoneman.cashcraft.proxies;
 
+import io.github.tehstoneman.cashcraft.client.ClientEvents;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy
 {
@@ -8,6 +10,7 @@ public class ClientProxy extends CommonProxy
 	public void preInit()
 	{
 		super.preInit();
+		MinecraftForge.EVENT_BUS.register( new ClientEvents() );
 	}
 
 	@Override
