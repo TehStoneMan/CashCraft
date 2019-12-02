@@ -3,7 +3,6 @@ package io.github.tehstoneman.cashcraft.economy;
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.api.IPlayerWallet;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
-import io.github.tehstoneman.cashcraft.common.item.ItemCashCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -58,27 +57,29 @@ class PlayerWallet implements IPlayerWallet
 		if( amount < value )
 			return false;
 
-		int cashValue = EnumCoinValue.values().length;
-		while( cashValue > 0 )
-		{
-			for( int i = 0; i < player.inventory.mainInventory.size(); i++ )
-			{
-				final ItemStack itemStack = player.inventory.mainInventory.get( i );
-				if( itemStack != null && itemStack.getItem() == ItemCashCraft.COIN && itemStack.getItemDamage() == cashValue - 1 )
-				{
-					int count = (int)( value / EnumCoinValue.byMetadata( cashValue - 1 ).getValue() );
-					if( itemStack.getCount() <= count )
-					{
-						count = itemStack.getCount();
-						player.inventory.mainInventory.set( i, ItemStack.EMPTY );
-					}
-					else
-						player.inventory.decrStackSize( i, count );
-					value -= EnumCoinValue.byMetadata( cashValue - 1 ).getValue() * count;
-				}
-			}
-			cashValue--;
-		}
+		final int cashValue = EnumCoinValue.values().length;
+		/*
+		 * while( cashValue > 0 )
+		 * {
+		 * for( int i = 0; i < player.inventory.mainInventory.size(); i++ )
+		 * {
+		 * final ItemStack itemStack = player.inventory.mainInventory.get( i );
+		 * if( itemStack != null && itemStack.getItem() == CashCraftItems. && itemStack.getItemDamage() == cashValue - 1 )
+		 * {
+		 * int count = (int)( value / EnumCoinValue.byMetadata( cashValue - 1 ).getValue() );
+		 * if( itemStack.getCount() <= count )
+		 * {
+		 * count = itemStack.getCount();
+		 * player.inventory.mainInventory.set( i, ItemStack.EMPTY );
+		 * }
+		 * else
+		 * player.inventory.decrStackSize( i, count );
+		 * value -= EnumCoinValue.byMetadata( cashValue - 1 ).getValue() * count;
+		 * }
+		 * }
+		 * cashValue--;
+		 * }
+		 */
 		return false;
 	}
 
@@ -88,12 +89,14 @@ class PlayerWallet implements IPlayerWallet
 		// Loop through player's inventory and remove cash items
 		final InventoryPlayer inventory = player.inventory;
 
-		for( int i = 0; i < inventory.mainInventory.size(); i++ )
-		{
-			final ItemStack itemStack = inventory.mainInventory.get( i );
-			if( itemStack != null && itemStack.getItem() == ItemCashCraft.COIN )
-				inventory.mainInventory.set( i, ItemStack.EMPTY );
-		}
+		/*
+		 * for( int i = 0; i < inventory.mainInventory.size(); i++ )
+		 * {
+		 * final ItemStack itemStack = inventory.mainInventory.get( i );
+		 * if( itemStack != null && itemStack.getItem() == ItemCashCraft.COIN )
+		 * inventory.mainInventory.set( i, ItemStack.EMPTY );
+		 * }
+		 */
 
 		amount = 0;
 	}

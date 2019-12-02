@@ -1,8 +1,8 @@
 package io.github.tehstoneman.cashcraft.economy;
 
 import io.github.tehstoneman.cashcraft.api.IEcomomy;
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
-import io.github.tehstoneman.cashcraft.common.item.ItemCashCraft;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,14 +68,15 @@ public class Economy implements IEcomomy
 		// Calculate how many coins/notes of value fit in amount
 		final int count = (int)( amount / EnumCoinValue.byMetadata( i ).getValue() );
 
-		return new ItemStack( ItemCashCraft.COIN, count, i );
+		return new ItemStack( CashCraftItems.COIN_ONE, count );
 	}
 
 	@Override
 	public long getValue( ItemStack itemStack )
 	{
 		final int count = itemStack.getCount();
-		final int value = EnumCoinValue.byMetadata( itemStack.getItemDamage() ).getValue();
+		// final int value = EnumCoinValue.byMetadata( itemStack.getItemDamage() ).getValue();
+		final int value = 1;
 
 		return count * value;
 	}

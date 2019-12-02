@@ -6,20 +6,8 @@ import net.minecraft.item.Item;
 
 public class ItemCashCraft extends Item
 {
-	public static ItemCash			COIN		= new ItemCash();
-	public static ItemMoneyPouch	MONEY_POUCH	= new ItemMoneyPouch();
-
-	private final String			name;
-
-	ItemCashCraft( String name )
+	ItemCashCraft()
 	{
-		this.name = name;
-		setCreativeTab( CashCraft.creativeTab );
-		setUnlocalizedName( ModInfo.MODID + "." + name );
-	}
-	
-	public String getName()
-	{
-		return name;
+		super( new Item.Properties().group( CashCraft.ITEM_GROUP ) );
 	}
 }

@@ -6,46 +6,45 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class ContainerMoneyPouch extends Container
 {
 	private final InventoryPlayer	inventoryPlayer;
-	private final ItemStackHandler	inventoryMoneyPouch;
+	// private final ItemStackHandler inventoryMoneyPouch;
 	private final int				protectedIndex;
 
-	private int						indexStart, indexPlayer, indexHotbar;
+	private final int				indexStart, indexPlayer;
+	private int						indexHotbar;
 
 	public ContainerMoneyPouch( EntityPlayer player, ItemStack moneyPouch, int protectedIndex )
 	{
 		inventoryPlayer = player.inventory;
-		inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null );
+		// inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null );
 		this.protectedIndex = protectedIndex;
 
 		indexStart = 0;
-		indexHotbar = inventoryMoneyPouch.getSlots();
+		// indexHotbar = inventoryMoneyPouch.getSlots();
 		indexPlayer = indexHotbar + 9;
 
 		for( int i = 0; i < indexHotbar; i++ )
 		{
 			final int x = i % 5 * 18 + 44;
 			final int y = i / 5 * 18 + 20;
-			addSlotToContainer( new CoinSlotHandler( inventoryMoneyPouch, i, x, y ) );
+			// addSlotToContainer( new CoinSlotHandler( inventoryMoneyPouch, i, x, y ) );
 		}
 
 		for( int i = 0; i < 27; i++ )
 		{
 			final int x = i % 9 * 18 + 8;
 			final int y = 87 + i / 9 * 18;
-			addSlotToContainer( new Slot( inventoryPlayer, i + 9, x, y ) );
+			// addSlotToContainer( new Slot( inventoryPlayer, i + 9, x, y ) );
 		}
 
 		for( int i = 0; i < 9; i++ )
 		{
 			final int x = i % 9 * 18 + 8;
 			final int y = 145;
-			addSlotToContainer( new Slot( inventoryPlayer, i, x, y ) );
+			// addSlotToContainer( new Slot( inventoryPlayer, i, x, y ) );
 		}
 	}
 

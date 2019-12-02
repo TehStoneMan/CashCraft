@@ -2,7 +2,6 @@ package io.github.tehstoneman.cashcraft.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -22,19 +21,21 @@ class GuiMoneyPouch extends GuiContainer
 		ySize = 169;
 	}
 
-	@Override
-	public void drawScreen( int mouseX, int mouseY, float partialTicks )
-	{
-		drawDefaultBackground();
-		super.drawScreen( mouseX, mouseY, partialTicks );
-		renderHoveredToolTip( mouseX, mouseY );
-	}
+	/*
+	 * @Override
+	 * public void drawScreen( int mouseX, int mouseY, float partialTicks )
+	 * {
+	 * drawDefaultBackground();
+	 * super.drawScreen( mouseX, mouseY, partialTicks );
+	 * renderHoveredToolTip( mouseX, mouseY );
+	 * }
+	 */
 
 	@Override
 	protected void drawGuiContainerForegroundLayer( int mouseX, int mouseY )
 	{
-		fontRenderer.drawString( CashCraft.proxy.localize( "container.cashcraft.money_pouch" ), 8, 6, 0x404040 );
-		fontRenderer.drawString( CashCraft.proxy.localize( "container.inventory" ), 8, ySize - 96 + 2, 0x404040 );
+		// fontRenderer.drawString( CashCraft.proxy.localize( "container.cashcraft.money_pouch" ), 8, 6, 0x404040 );
+		// fontRenderer.drawString( CashCraft.proxy.localize( "container.inventory" ), 8, ySize - 96 + 2, 0x404040 );
 	}
 
 	@Override

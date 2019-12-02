@@ -1,46 +1,11 @@
 package io.github.tehstoneman.cashcraft.common.item;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemCash extends ItemCashCraft
 {
 	public ItemCash()
-	{
-		super( "cash" );
-		setHasSubtypes( true );
-		setMaxDamage( 0 );
-	}
-
-	@Override
-	public int getMetadata( int damage )
-	{
-		return damage;
-	}
-
-	@Override
-	public String getUnlocalizedName( ItemStack itemStack )
-	{
-		final int metadata = itemStack.getItemDamage();
-		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
-		return super.getUnlocalizedName() + "." + values.getName();
-	}
-
-	@Override
-	@SideOnly( Side.CLIENT )
-	public void getSubItems( CreativeTabs tab, NonNullList< ItemStack > subItems )
-	{
-		if( isInCreativeTab( tab ) )
-			for( final EnumCoinValue values : EnumCoinValue.values() )
-			{
-				final int metadata = values.getMetadata();
-				final ItemStack subItemStack = new ItemStack( this, 1, metadata );
-				subItems.add( subItemStack );
-			}
-	}
+	{}
 
 	public int getValue()
 	{
@@ -49,7 +14,7 @@ public class ItemCash extends ItemCashCraft
 
 	public int getValue( ItemStack itemStack )
 	{
-		final int metadata = itemStack.getItemDamage();
+		final int metadata = itemStack.getDamage();
 		final EnumCoinValue values = EnumCoinValue.byMetadata( metadata );
 		return values.getValue();
 	}

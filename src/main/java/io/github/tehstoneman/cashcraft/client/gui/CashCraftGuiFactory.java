@@ -9,11 +9,8 @@ import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElement;
-import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
 public class CashCraftGuiFactory implements IModGuiFactory
@@ -28,11 +25,11 @@ public class CashCraftGuiFactory implements IModGuiFactory
 		return true;
 	}
 
-	@Override
+	/*@Override
 	public GuiScreen createConfigGui( GuiScreen parentScreen )
 	{
 		return new CashCraftConfigGui( parentScreen );
-	}
+	}*/
 
 	@Override
 	public Set< RuntimeOptionCategoryElement > runtimeGuiCategories()
@@ -40,7 +37,14 @@ public class CashCraftGuiFactory implements IModGuiFactory
 		return null;
 	}
 
-	private static class CashCraftConfigGui extends GuiConfig
+	@Override
+	public GuiScreen createConfigGui( GuiScreen parentScreen )
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*private static class CashCraftConfigGui extends GuiConfig
 	{
 		private CashCraftConfigGui( GuiScreen parentScreen )
 		{
@@ -62,5 +66,5 @@ public class CashCraftGuiFactory implements IModGuiFactory
 
 			return listConfigElements;
 		}
-	}
+	}*/
 }

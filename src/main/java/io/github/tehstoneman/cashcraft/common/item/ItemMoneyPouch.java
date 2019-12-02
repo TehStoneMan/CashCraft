@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -27,28 +25,25 @@ public class ItemMoneyPouch extends ItemCashCraft
 {
 	public ItemMoneyPouch()
 	{
-		super( "moneypouch" );
-		setMaxDamage( 0 );
-		setMaxStackSize( 1 );
 	}
 
-	@Override
+	/*@Override
 	public ICapabilityProvider initCapabilities( ItemStack stack, @Nullable NBTTagCompound nbt )
 	{
 		return new MoneyPouchProvider( stack );
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public ActionResult< ItemStack > onItemRightClick( World worldIn, EntityPlayer playerIn, EnumHand hand )
 	{
 		if( !worldIn.isRemote && hand == EnumHand.MAIN_HAND )
 			playerIn.openGui( CashCraft.instance, CashCraft.GUI_MONEY_POUCH, worldIn, 0, 0, 0 );
 		return new ActionResult<>( EnumActionResult.SUCCESS, playerIn.getHeldItem( hand ) );
-	}
+	}*/
 
 	// adds 'tooltip' text
 
-	@SideOnly( Side.CLIENT )
+	/*@SideOnly( Side.CLIENT )
 	@Override
 	public void addInformation( ItemStack stack, @Nullable World worldIn, List< String > tooltip, ITooltipFlag flagIn )
 	{
@@ -63,9 +58,9 @@ public class ItemMoneyPouch extends ItemCashCraft
 		else
 			tooltip.add( CashCraft.proxy.localize( "tooltip.cashcraft.empty" ) );
 		tooltip.add( CashCraft.proxy.localize( "tooltip.cashcraft.moneypouch" ) );
-	}
+	}*/
 
-	private static class MoneyPouchProvider implements ICapabilitySerializable< NBTTagCompound >
+	/*private static class MoneyPouchProvider implements ICapabilitySerializable< NBTTagCompound >
 	{
 		private final ItemStack		invItem;
 		private ItemStackHandler	inventory;
@@ -140,5 +135,5 @@ public class ItemMoneyPouch extends ItemCashCraft
 					value += CashCraftAPI.economy.getValue( inventory.getStackInSlot( i ) );
 			return value;
 		}
-	}
+	}*/
 }

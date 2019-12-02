@@ -2,7 +2,7 @@ package io.github.tehstoneman.cashcraft.client.gui;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
-import io.github.tehstoneman.cashcraft.common.item.ItemCashCraft;
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -16,7 +16,7 @@ public class CashCraftGuiHandler implements IGuiHandler
 		if( ID == CashCraft.GUI_MONEY_POUCH )
 		{
 			final ItemStack itemStack = player.getHeldItemMainhand();
-			if( itemStack.getItem() != ItemCashCraft.MONEY_POUCH )
+			if( itemStack.getItem() != CashCraftItems.MONEY_POUCH )
 				return null;
 			return new ContainerMoneyPouch( player, itemStack, player.inventory.currentItem );
 		}
@@ -29,7 +29,7 @@ public class CashCraftGuiHandler implements IGuiHandler
 		if( ID == CashCraft.GUI_MONEY_POUCH )
 		{
 			final ItemStack itemStack = player.getHeldItemMainhand();
-			if( itemStack.getItem() != ItemCashCraft.MONEY_POUCH )
+			if( itemStack.getItem() != CashCraftItems.MONEY_POUCH )
 				return null;
 			return new GuiMoneyPouch( new ContainerMoneyPouch( player, itemStack, player.inventory.currentItem ) );
 		}

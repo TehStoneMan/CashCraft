@@ -2,12 +2,9 @@ package io.github.tehstoneman.cashcraft.config;
 
 import java.io.File;
 
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-
 public class CashCraftConfig
 {
-	private final Configuration	config;
+	// private final Configuration config;
 
 	public static final String	CATEGORY_DISPLAY	= "display";
 	public static final String	CATEGORY_ECONOMY	= "economy";
@@ -25,13 +22,15 @@ public class CashCraftConfig
 
 	public CashCraftConfig( File file )
 	{
-		config = new Configuration( file );
+		// config = new Configuration( file );
 	}
 
-	public Configuration getConfig()
-	{
-		return config;
-	}
+	/*
+	 * public Configuration getConfig()
+	 * {
+	 * return config;
+	 * }
+	 */
 
 	/**
 	 * Load the configuration values from the configuration file
@@ -71,8 +70,7 @@ public class CashCraftConfig
 	public void syncConfig( boolean loadConfigFromFile, boolean readFieldsFromConfig )
 	{
 		// Load config file
-		if( loadConfigFromFile )
-			config.load();
+		// if( loadConfigFromFile ) config.load();
 
 		// ----------------
 		// Define config properties
@@ -80,59 +78,60 @@ public class CashCraftConfig
 		// General
 		/*final Property propMakeChange = config.get( Configuration.CATEGORY_GENERAL, "makeChange", true )
 				.setLanguageKey( "config.cashcraft.make_change" ).setRequiresMcRestart( true );*/
-		final Property propUseEconomy = config.get( Configuration.CATEGORY_GENERAL, "useEconomy", true )
-				.setLanguageKey( "config.cashcraft.use_economy" ).setRequiresMcRestart( true );
+		/*final Property propUseEconomy = config.get( Configuration.CATEGORY_GENERAL, "useEconomy", true )
+				.setLanguageKey( "config.cashcraft.use_economy" ).setRequiresMcRestart( true );*/
 		/*final Property propDoMobDrops = config.get( Configuration.CATEGORY_GENERAL, "doMobDrops", true )
 				.setLanguageKey( "config.cashcraft.mob_drops" ).setRequiresMcRestart( false );*/
 
 		// Display
-		final Property propShowAsCoins = config.get( CATEGORY_DISPLAY, "showAsCoins", false )
-				.setLanguageKey( "config.cashcraft.show_as_coins" ).setRequiresMcRestart( false );
-		final Property propUseCustomName = config.get( CATEGORY_DISPLAY, "useCustomName", false )
-				.setLanguageKey( "config.cashcraft.use_custom_name" ).setRequiresMcRestart( false );
-		final Property propCashSingular = config.get( CATEGORY_DISPLAY, "cashSingular", "%s cash" )
-				.setLanguageKey( "config.cashcraft.cash_singular" ).setRequiresMcRestart( false );
-		final Property propCashPlural = config.get( CATEGORY_DISPLAY, "cashPlural", "%s cash" )
-				.setLanguageKey( "config.cashcraft.cash_plural" ).setRequiresMcRestart( false );
+		/*final Property propShowAsCoins = config.get( CATEGORY_DISPLAY, "showAsCoins", false )
+				.setLanguageKey( "config.cashcraft.show_as_coins" ).setRequiresMcRestart( false );*/
+		/*final Property propUseCustomName = config.get( CATEGORY_DISPLAY, "useCustomName", false )
+				.setLanguageKey( "config.cashcraft.use_custom_name" ).setRequiresMcRestart( false );*/
+		/*final Property propCashSingular = config.get( CATEGORY_DISPLAY, "cashSingular", "%s cash" )
+				.setLanguageKey( "config.cashcraft.cash_singular" ).setRequiresMcRestart( false );*/
+		/*final Property propCashPlural = config.get( CATEGORY_DISPLAY, "cashPlural", "%s cash" )
+				.setLanguageKey( "config.cashcraft.cash_plural" ).setRequiresMcRestart( false );*/
 
 		// Economy
-		final Property propUseTrade = config.get( CATEGORY_ECONOMY, "useTrade", true )
-				.setLanguageKey( "config.cashcraft.use_trade" ).setRequiresMcRestart( false );
+		/*final Property propUseTrade = config.get( CATEGORY_ECONOMY, "useTrade", true )
+				.setLanguageKey( "config.cashcraft.use_trade" ).setRequiresMcRestart( false );*/
 		//@formatter:on
 		// ----------------
 
 		// ----------------
 		// Read properties
-		if( readFieldsFromConfig )
-		{
-			// makeChange = propMakeChange.getBoolean();
-			useEconomy = propUseEconomy.getBoolean();
-			// doMobDrops = propDoMobDrops.getBoolean();
-
-			showAsCoins = propShowAsCoins.getBoolean();
-			useCustomName = propUseCustomName.getBoolean();
-			cashSingular = propCashSingular.getString();
-			cashPlural = propCashPlural.getString();
-
-			useEconomy = propUseEconomy.getBoolean();
-		}
+		/*
+		 * if( readFieldsFromConfig )
+		 * {
+		 * // makeChange = propMakeChange.getBoolean();
+		 * useEconomy = propUseEconomy.getBoolean();
+		 * // doMobDrops = propDoMobDrops.getBoolean();
+		 * 
+		 * showAsCoins = propShowAsCoins.getBoolean();
+		 * useCustomName = propUseCustomName.getBoolean();
+		 * cashSingular = propCashSingular.getString();
+		 * cashPlural = propCashPlural.getString();
+		 * 
+		 * useEconomy = propUseEconomy.getBoolean();
+		 * }
+		 */
 		// ----------------
 
 		// ----------------
 		// Save properties to file
 		// propMakeChange.set( makeChange );
-		propUseEconomy.set( useEconomy );
+		// propUseEconomy.set( useEconomy );
 		// propDoMobDrops.set( doMobDrops );
 
-		propShowAsCoins.set( showAsCoins );
-		propUseCustomName.set( useCustomName );
-		propCashSingular.set( cashSingular );
-		propCashPlural.set( cashPlural );
+		// propShowAsCoins.set( showAsCoins );
+		// propUseCustomName.set( useCustomName );
+		// propCashSingular.set( cashSingular );
+		// propCashPlural.set( cashPlural );
 
-		propUseEconomy.set( useEconomy );
+		// propUseEconomy.set( useEconomy );
 		// ----------------
 
-		if( config.hasChanged() )
-			config.save();
+		// if( config.hasChanged() ) config.save();
 	}
 }
