@@ -1,6 +1,6 @@
 package io.github.tehstoneman.cashcraft.api;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -27,7 +27,7 @@ public interface IEcomomy
 	 * @param player
 	 * @return
 	 */
-	public IPlayerWallet getWallet( EntityPlayer player );
+	public IPlayerWallet getWallet( PlayerEntity player );
 
 	/**
 	 * Get the singular or plural term of the currency used
@@ -64,7 +64,7 @@ public interface IEcomomy
 
 	/**
 	 * Display amount as a string with choice of long or short form currency attached
-	 * 
+	 *
 	 * @param amount
 	 * @param longFormat
 	 * @return

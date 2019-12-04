@@ -4,18 +4,18 @@ import org.lwjgl.opengl.GL11;
 
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
-import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.util.ResourceLocation;
 
-class GuiMoneyPouch extends GuiContainer
+class GuiMoneyPouch extends ContainerScreen< ContainerMoneyPouch >
 {
-	private static final ResourceLocation	GUI_MONEYPOUCH	= new ResourceLocation( ModInfo.MODID, "textures/gui/moneypouch.png" );
+	private static final ResourceLocation	GUI_MONEYPOUCH	= new ResourceLocation( ModInfo.MOD_ID, "textures/gui/moneypouch.png" );
 
 	public ContainerMoneyPouch				container;
 
 	GuiMoneyPouch( ContainerMoneyPouch container )
 	{
-		super( container );
+		super( container, null, null );
 		this.container = container;
 		xSize = 176;
 		ySize = 169;
@@ -42,7 +42,7 @@ class GuiMoneyPouch extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer( float partialTicks, int mouseX, int mouseY )
 	{
 		GL11.glColor4f( 1.0F, 1.0F, 1.0F, 1.0F );
-		mc.getTextureManager().bindTexture( GUI_MONEYPOUCH );
-		this.drawTexturedModalRect( guiLeft, guiTop, 0, 0, xSize, ySize );
+		minecraft.getTextureManager().bindTexture( GUI_MONEYPOUCH );
+		this.blit( guiLeft, guiTop, 0, 0, xSize, ySize );
 	}
 }

@@ -1,23 +1,24 @@
 package io.github.tehstoneman.cashcraft.common.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.ClickType;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerMoneyPouch extends Container
 {
-	private final InventoryPlayer	inventoryPlayer;
+	private final PlayerInventory	inventoryPlayer;
 	// private final ItemStackHandler inventoryMoneyPouch;
 	private final int				protectedIndex;
 
 	private final int				indexStart, indexPlayer;
 	private int						indexHotbar;
 
-	public ContainerMoneyPouch( EntityPlayer player, ItemStack moneyPouch, int protectedIndex )
+	public ContainerMoneyPouch( PlayerEntity player, ItemStack moneyPouch, int protectedIndex )
 	{
+		super( null, 0 );
 		inventoryPlayer = player.inventory;
 		// inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null );
 		this.protectedIndex = protectedIndex;
@@ -49,7 +50,7 @@ public class ContainerMoneyPouch extends Container
 	}
 
 	@Override
-	public ItemStack slotClick( int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player )
+	public ItemStack slotClick( int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player )
 	{
 		if( slotId >= 0 && getSlot( slotId ) != null && getSlot( slotId ).getStack() == player.getHeldItemMainhand() )
 			return ItemStack.EMPTY;
@@ -57,13 +58,13 @@ public class ContainerMoneyPouch extends Container
 	}
 
 	@Override
-	public boolean canInteractWith( EntityPlayer playerIn )
+	public boolean canInteractWith( PlayerEntity playerIn )
 	{
 		return true;
 	}
 
 	@Override
-	public ItemStack transferStackInSlot( EntityPlayer playerIn, int index )
+	public ItemStack transferStackInSlot( PlayerEntity playerIn, int index )
 	{
 		final Slot slot = inventorySlots.get( index );
 		ItemStack returnStack = ItemStack.EMPTY;
@@ -79,9 +80,8 @@ public class ContainerMoneyPouch extends Container
 				if( !mergeItemStack( itemStack, indexHotbar, inventorySlots.size(), true ) )
 					return ItemStack.EMPTY;
 			}
-			else
-				if( !mergeItemStack( itemStack, 0, indexHotbar, false ) )
-					return ItemStack.EMPTY;
+			else if( !mergeItemStack( itemStack, 0, indexHotbar, false ) )
+				return ItemStack.EMPTY;
 
 			if( itemStack.isEmpty() )
 				slot.putStack( ItemStack.EMPTY );

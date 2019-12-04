@@ -5,7 +5,7 @@ import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class Economy implements IEcomomy
@@ -17,7 +17,7 @@ public class Economy implements IEcomomy
 	}
 
 	@Override
-	public PlayerWallet getWallet( EntityPlayer player )
+	public PlayerWallet getWallet( PlayerEntity player )
 	{
 		if( player != null )
 			return new PlayerWallet( player );
@@ -34,27 +34,24 @@ public class Economy implements IEcomomy
 						return "economy.cashcraft.coinplural.long";
 					else
 						return "economy.cashcraft.cashplural.long";
+				else if( CashCraftConfig.showAsCoins )
+					return "economy.cashcraft.coinplural.short";
 				else
-					if( CashCraftConfig.showAsCoins )
-						return "economy.cashcraft.coinplural.short";
-					else
-						return "economy.cashcraft.cashplural.short";
+					return "economy.cashcraft.cashplural.short";
 			else
 				return CashCraftConfig.cashPlural;
-		else
-			if( !CashCraftConfig.useCustomName )
-				if( longFormat )
-					if( CashCraftConfig.showAsCoins )
-						return "economy.cashcraft.coinsingular.long";
-					else
-						return "economy.cashcraft.cashsingular.long";
+		else if( !CashCraftConfig.useCustomName )
+			if( longFormat )
+				if( CashCraftConfig.showAsCoins )
+					return "economy.cashcraft.coinsingular.long";
 				else
-					if( CashCraftConfig.showAsCoins )
-						return "economy.cashcraft.coinsingular.short";
-					else
-						return "economy.cashcraft.cashsingular.short";
+					return "economy.cashcraft.cashsingular.long";
+			else if( CashCraftConfig.showAsCoins )
+				return "economy.cashcraft.coinsingular.short";
 			else
-				return CashCraftConfig.cashSingular;
+				return "economy.cashcraft.cashsingular.short";
+		else
+			return CashCraftConfig.cashSingular;
 	}
 
 	@Override

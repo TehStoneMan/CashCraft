@@ -23,6 +23,7 @@ $RECYCLE.BIN/
 .settings/
 bin/
 local.properties
+run/
 tmp/
 
 # Eclipse Core
@@ -39,7 +40,6 @@ tmp/
 # =========================
 
 build/
-run/
 
 # =========================
 # Log files

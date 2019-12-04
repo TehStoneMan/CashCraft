@@ -3,21 +3,21 @@ package io.github.tehstoneman.cashcraft.economy;
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.api.IPlayerWallet;
 import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 
 class PlayerWallet implements IPlayerWallet
 {
 	private long				amount;
-	private final EntityPlayer	player;
+	private final PlayerEntity	player;
 
-	PlayerWallet( EntityPlayer player )
+	PlayerWallet( PlayerEntity player )
 	{
 		amount = 0;
 
 		// Scan through player's inventory and count cash values
-		final InventoryPlayer inventory = player.inventory;
+		final PlayerInventory inventory = player.inventory;
 
 		for( final ItemStack itemStack : inventory.mainInventory )
 			amount += CashCraftAPI.economy.getValue( itemStack );
@@ -87,7 +87,7 @@ class PlayerWallet implements IPlayerWallet
 	public void empty()
 	{
 		// Loop through player's inventory and remove cash items
-		final InventoryPlayer inventory = player.inventory;
+		final PlayerInventory inventory = player.inventory;
 
 		/*
 		 * for( int i = 0; i < inventory.mainInventory.size(); i++ )
