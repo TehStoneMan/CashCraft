@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "cashcraft:note_005",
+	"ingredients":
+	[
+		{ "item": "cashcraft:note_010" }
+	],
+	"result": { "item": "cashcraft:note_005", "count": 2 }
+}

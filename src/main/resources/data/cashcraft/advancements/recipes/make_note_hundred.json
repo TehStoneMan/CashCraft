@@ -1,0 +1,33 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards":
+	{
+		"recipes": [ "cashcraft:make_note_hundred" ]
+	},
+	"criteria":
+	{
+		"has_cash":
+		{
+			"trigger": "minecraft:inventory_changed",
+			"conditions":
+			{
+        		"items":
+        		[
+          			{ "item": "cashcraft:note_050" }
+				]
+			}
+		},
+		"has_the_recipe":
+		{
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": { "recipe": "cashcraft:make_note_hundred" }
+		}
+	},
+	"requirements":
+	[
+		[
+			"has_cash",
+			"has_the_recipe"
+		]
+	]
+}

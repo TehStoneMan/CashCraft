@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "cashcraft:coin_002",
+	"ingredients":
+	[
+		{ "item": "cashcraft:coin_001" },
+		{ "item": "cashcraft:coin_001" }
+	],
+	"result": { "item": "cashcraft:coin_002" }
+}

@@ -1,0 +1,33 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards":
+	{
+		"recipes": [ "cashcraft:moneypouch" ]
+	},
+	"criteria":
+	{
+		"has_cash":
+		{
+			"trigger": "minecraft:inventory_changed",
+			"conditions":
+			{
+        		"items":
+        		[
+          			{ "item": "minecraft:leather" }
+				]
+			}
+		},
+		"has_the_recipe":
+		{
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": { "recipe": "cashcraft:moneypouch" }
+		}
+	},
+	"requirements":
+	[
+		[
+			"has_cash",
+			"has_the_recipe"
+		]
+	]
+}
