@@ -2,7 +2,6 @@ package io.github.tehstoneman.cashcraft.economy;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.api.IPlayerWallet;
-import io.github.tehstoneman.cashcraft.common.item.ItemCash.EnumCoinValue;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -57,7 +56,7 @@ class PlayerWallet implements IPlayerWallet
 		if( amount < value )
 			return false;
 
-		final int cashValue = EnumCoinValue.values().length;
+		// final int cashValue = EnumCoinValue.values().length;
 		/*
 		 * while( cashValue > 0 )
 		 * {

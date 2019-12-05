@@ -6,46 +6,47 @@ import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class ContainerMoneyPouch extends Container
 {
-	private final PlayerInventory	inventoryPlayer;
-	// private final ItemStackHandler inventoryMoneyPouch;
+	// private final PlayerInventory inventoryPlayer;
+	private final ItemStackHandler	inventoryMoneyPouch;
 	private final int				protectedIndex;
 
 	private final int				indexStart, indexPlayer;
-	private int						indexHotbar;
+	private final int				indexHotbar;
 
-	public ContainerMoneyPouch( PlayerEntity player, ItemStack moneyPouch, int protectedIndex )
+	public ContainerMoneyPouch( int windowID, PlayerInventory inventoryPlayer, ItemStack moneyPouch, int protectedIndex )
 	{
-		super( null, 0 );
-		inventoryPlayer = player.inventory;
-		// inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null );
+		super( CashCraftContainerTypes.MONEY_POUCH, windowID );
+		inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null ).orElse( null );
 		this.protectedIndex = protectedIndex;
 
 		indexStart = 0;
-		// indexHotbar = inventoryMoneyPouch.getSlots();
+		indexHotbar = inventoryMoneyPouch.getSlots();
 		indexPlayer = indexHotbar + 9;
 
 		for( int i = 0; i < indexHotbar; i++ )
 		{
 			final int x = i % 5 * 18 + 44;
 			final int y = i / 5 * 18 + 20;
-			// addSlotToContainer( new CoinSlotHandler( inventoryMoneyPouch, i, x, y ) );
+			addSlot( new CoinSlotHandler( inventoryMoneyPouch, i, x, y ) );
 		}
 
 		for( int i = 0; i < 27; i++ )
 		{
 			final int x = i % 9 * 18 + 8;
 			final int y = 87 + i / 9 * 18;
-			// addSlotToContainer( new Slot( inventoryPlayer, i + 9, x, y ) );
+			addSlot( new Slot( inventoryPlayer, i + 9, x, y ) );
 		}
 
 		for( int i = 0; i < 9; i++ )
 		{
 			final int x = i % 9 * 18 + 8;
 			final int y = 145;
-			// addSlotToContainer( new Slot( inventoryPlayer, i, x, y ) );
+			addSlot( new Slot( inventoryPlayer, i, x, y ) );
 		}
 	}
 

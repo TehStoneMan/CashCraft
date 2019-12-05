@@ -10,5 +10,5 @@
 		"S": { "tag": "forge:string" },
 		"L": { "tag": "forge:leather" }
 	},
-	"result": { "item": "cashcraft:moneypouch" }
+	"result": { "item": "cashcraft:money_pouch" }
 }

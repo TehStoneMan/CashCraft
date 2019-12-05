@@ -9,12 +9,10 @@ import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.common.item.CashCraftItemGroup;
 import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.economy.Trade;
-import io.github.tehstoneman.cashcraft.events.RegistryEventHandler;
 import io.github.tehstoneman.cashcraft.proxy.ClientProxy;
 import io.github.tehstoneman.cashcraft.proxy.IProxy;
 import io.github.tehstoneman.cashcraft.proxy.ServerProxy;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -27,22 +25,10 @@ public class CashCraft
 	public static final ItemGroup	ITEM_GROUP			= new CashCraftItemGroup();
 	public static final IProxy		PROXY				= DistExecutor.<IProxy> runForDist( () -> ClientProxy::new, () -> ServerProxy::new );
 
-	public static Random			RANDOM;
-
-	// GUI ID's
-	public static final int			GUI_MONEY_POUCH		= 0;
-
-	public static final byte		MESSAGE_ID_UPDATE	= 1;
+	public static final Random		RANDOM				= new Random();
 
 	public CashCraft()
 	{
-		// Initialize random numbers
-		RANDOM = new Random();
-
-		// Register ourselves for server and other game events we are interested in
-		MinecraftForge.EVENT_BUS.register( new RegistryEventHandler() );
-		// MinecraftForge.EVENT_BUS.register( new EventManager() );
-
 		// Register network messages
 		// simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel( ModInfo.MODID );
 		// simpleNetworkWrapper.registerMessage( SyncConfigMessage.Handler.class, SyncConfigMessage.class, MESSAGE_ID_UPDATE, Side.CLIENT );
