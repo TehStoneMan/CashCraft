@@ -2,16 +2,38 @@ package io.github.tehstoneman.cashcraft.events;
 
 import java.util.Random;
 
+import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
+import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.monster.BlazeEntity;
+import net.minecraft.entity.monster.CaveSpiderEntity;
+import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.entity.monster.EndermanEntity;
+import net.minecraft.entity.monster.GhastEntity;
+import net.minecraft.entity.monster.SkeletonEntity;
+import net.minecraft.entity.monster.SpiderEntity;
+import net.minecraft.entity.monster.WitchEntity;
+import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.MOD )
 public class EventManager
 {
 	// private static Minecraft mc = Minecraft.getMinecraft();
 	private final Random r = new Random();
 
-	/*
 	@SubscribeEvent
 	public void onLivingDropsEvent( LivingDropsEvent event )
 	{
-		if( !CashCraftConfig.doMobDrops )
+		if( !CashCraftConfig.COMMON.doMobDrops.get() )
 			return;
 
 		// Calculate drop chance
@@ -25,47 +47,35 @@ public class EventManager
 		final World world = entity.getEntityWorld();
 		final BlockPos pos = entity.getPosition();
 
-		// @formatter:off
-		if( entity instanceof EntityCaveSpider
-		 || entity instanceof EntitySkeleton
-		 || entity instanceof EntitySpider
-		 || entity instanceof EntityZombie )
+		if( entity instanceof CaveSpiderEntity || entity instanceof SkeletonEntity || entity instanceof SpiderEntity
+				|| entity instanceof ZombieEntity )
 		{
-			final EntityItem itemDrop = new EntityItem( world, pos.getX(), pos.getY(), pos.getZ(),
-					new ItemStack( ItemCashCraft.COIN, 1, ItemCash.EnumCoinValue.COIN_ONE.getMetadata() + value / 2 ) );
+			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_ONE, 1 ) );
 			event.getDrops().add( itemDrop );
 		}
 
-		if( entity instanceof EntityBlaze
-		 || entity instanceof EntityCreeper
-		 || entity instanceof EntityEnderman
-		 || entity instanceof EntityWitch )
+		if( entity instanceof BlazeEntity || entity instanceof CreeperEntity || entity instanceof EndermanEntity || entity instanceof WitchEntity )
 		{
-			final EntityItem itemDrop = new EntityItem( world, pos.getX(), pos.getY(), pos.getZ(),
-					new ItemStack( ItemCashCraft.COIN, 1, ItemCash.EnumCoinValue.COIN_TWO.getMetadata() + value ) );
-			event.getDrops().add( itemDrop );
-		}
-		// @formatter:on
-
-		if( entity instanceof EntityGhast )
-		{
-			final EntityItem itemDrop = new EntityItem( world, pos.getX(), pos.getY(), pos.getZ(),
-					new ItemStack( ItemCashCraft.COIN, 1, ItemCash.EnumCoinValue.COIN_FIVE.getMetadata() + value ) );
+			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_TWO, 1 ) );
 			event.getDrops().add( itemDrop );
 		}
 
-		if( entity instanceof EntityDragon || entity instanceof EntityWither )
+		if( entity instanceof GhastEntity )
+		{
+			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_FIVE, 1 ) );
+			event.getDrops().add( itemDrop );
+		}
+
+		if( entity instanceof EnderDragonEntity || entity instanceof WitherEntity )
 		{
 			final int maxDrops = 5 + r.nextInt( 5 + 5 * event.getLootingLevel() );
 			for( int i = 0; i < maxDrops; i++ )
 			{
-				final EntityItem itemDrop = new EntityItem( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( ItemCashCraft.COIN, 1,
-						ItemCash.EnumCoinValue.NOTE_ONE.getMetadata() + r.nextInt( 1 + event.getLootingLevel() ) ) );
+				final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.NOTE_ONE, 1 ) );
 				event.getDrops().add( itemDrop );
 			}
 		}
 	}
-	*/
 
 	/*
 	 * @SubscribeEvent
@@ -86,7 +96,7 @@ public class EventManager
 	 * {
 	 * if( !event.player.worldObj.isRemote )
 	 * {
-	 * ItemStack itemStack = event.pickedUp.getEntityItem();
+	 * ItemStack itemStack = event.pickedUp.getItemEntity();
 	 * if( itemStack.getItem() instanceof ItemCash )
 	 * {
 	 * EntityPlayer player = event.player;

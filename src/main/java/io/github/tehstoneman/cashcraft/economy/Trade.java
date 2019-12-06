@@ -11,7 +11,7 @@ public class Trade implements ITrade
 	@Override
 	public Boolean isEnabled()
 	{
-		return CashCraftConfig.useEconomy && CashCraftConfig.useTrade;
+		return CashCraftConfig.COMMON.useEconomy.get() && CashCraftConfig.COMMON.useTrade.get();
 	}
 
 	@Override

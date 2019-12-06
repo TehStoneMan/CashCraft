@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
 import io.github.tehstoneman.cashcraft.common.item.CashCraftItemGroup;
+import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.economy.Trade;
 import io.github.tehstoneman.cashcraft.proxy.ClientProxy;
@@ -14,6 +15,7 @@ import io.github.tehstoneman.cashcraft.proxy.IProxy;
 import io.github.tehstoneman.cashcraft.proxy.ServerProxy;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -29,6 +31,7 @@ public class CashCraft
 
 	public CashCraft()
 	{
+		CashCraftConfig.register( ModLoadingContext.get() );
 		// Register network messages
 		// simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel( ModInfo.MODID );
 		// simpleNetworkWrapper.registerMessage( SyncConfigMessage.Handler.class, SyncConfigMessage.class, MESSAGE_ID_UPDATE, Side.CLIENT );

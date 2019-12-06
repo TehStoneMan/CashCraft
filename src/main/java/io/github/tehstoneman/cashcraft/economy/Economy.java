@@ -13,7 +13,7 @@ public class Economy implements IEcomomy
 	@Override
 	public Boolean isEnabled()
 	{
-		return CashCraftConfig.useEconomy;
+		return CashCraftConfig.COMMON.useEconomy.get();
 	}
 
 	@Override
@@ -28,30 +28,30 @@ public class Economy implements IEcomomy
 	public String getCurrencyName( boolean plural, boolean longFormat )
 	{
 		if( plural )
-			if( !CashCraftConfig.useCustomName )
+			if( !CashCraftConfig.COMMON.useCustomName.get() )
 				if( longFormat )
-					if( CashCraftConfig.showAsCoins )
+					if( CashCraftConfig.COMMON.showAsCoins.get() )
 						return "economy.cashcraft.coin_plural.long";
 					else
 						return "economy.cashcraft.cash_plural.long";
-				else if( CashCraftConfig.showAsCoins )
+				else if( CashCraftConfig.COMMON.showAsCoins.get() )
 					return "economy.cashcraft.coin_plural.short";
 				else
 					return "economy.cashcraft.cash_plural.short";
 			else
-				return CashCraftConfig.cashPlural;
-		else if( !CashCraftConfig.useCustomName )
+				return CashCraftConfig.COMMON.cashPlural.get();
+		else if( !CashCraftConfig.COMMON.useCustomName.get() )
 			if( longFormat )
-				if( CashCraftConfig.showAsCoins )
+				if( CashCraftConfig.COMMON.showAsCoins.get() )
 					return "economy.cashcraft.coin_singular.long";
 				else
 					return "economy.cashcraft.cash_singular.long";
-			else if( CashCraftConfig.showAsCoins )
+			else if( CashCraftConfig.COMMON.showAsCoins.get() )
 				return "economy.cashcraft.coin_singular.short";
 			else
 				return "economy.cashcraft.cash_singular.short";
 		else
-			return CashCraftConfig.cashSingular;
+			return CashCraftConfig.COMMON.cashSingular.get();
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class Economy implements IEcomomy
 	@Override
 	public String toString( long amount, boolean longFormat )
 	{
-		if( CashCraftConfig.showAsCoins )
+		if( CashCraftConfig.COMMON.showAsCoins.get() )
 			return I18n.format( getCurrencyName( amount != 1, longFormat ), String.format( "%d", amount ) );
 		else
 		{

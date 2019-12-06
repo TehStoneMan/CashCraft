@@ -1,137 +1,83 @@
 package io.github.tehstoneman.cashcraft.config;
 
-import java.io.File;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 
 public class CashCraftConfig
 {
-	// private final Configuration config;
+	private static final ForgeConfigSpec.Builder	COMMON_BUILDER	= new ForgeConfigSpec.Builder();
 
-	public static final String	CATEGORY_DISPLAY	= "display";
-	public static final String	CATEGORY_ECONOMY	= "economy";
+	public static Common							COMMON			= new Common( COMMON_BUILDER );
+	// public static Client CLIENT = new Common( CLIENT_BUILDER );
+	// public static Server SERVER = new Common( SERVER_BUILDER );
 
-	// private static boolean makeChange;
-	public static boolean		useEconomy;
-	// public static boolean doMobDrops;
+	private static ForgeConfigSpec					COMMON_SPEC		= COMMON_BUILDER.build();
 
-	public static boolean		showAsCoins;
-	public static boolean		useCustomName;
-	public static String		cashSingular;
-	public static String		cashPlural;
-
-	public static boolean		useTrade;
-
-	public CashCraftConfig( File file )
+	public static class Common
 	{
-		// config = new Configuration( file );
+		public ForgeConfigSpec.BooleanValue				makeChange;
+		public ForgeConfigSpec.BooleanValue				useEconomy;
+		public ForgeConfigSpec.BooleanValue				doMobDrops;
+
+		public ForgeConfigSpec.BooleanValue				showAsCoins;
+		public ForgeConfigSpec.BooleanValue				useCustomName;
+		public ForgeConfigSpec.ConfigValue< String >	cashSingular;
+		public ForgeConfigSpec.ConfigValue< String >	cashPlural;
+
+		public ForgeConfigSpec.BooleanValue				useTrade;
+
+		public Common( ForgeConfigSpec.Builder builder )
+		{
+			builder.comment( "General settings." ).push( "General" );
+
+			//@formatter:off
+			makeChange = builder
+					.translation( "config.cashcraft.make_change" )
+					.define( "makeChange", true );
+			useEconomy = builder
+					.translation( "config.cashcraft.use_economy" )
+					.define( "useEconomy", true );
+			doMobDrops = builder
+					.translation( "config.cashcraft.mob_drops" )
+					.define( "doMobDrops", true );
+			//@formatter:on
+
+			builder.pop();
+
+			builder.comment( "Display settings." ).push( "Display" );
+
+			//@formatter:off
+			showAsCoins = builder
+					.translation( "config.cashcraft.show_as_coins" )
+					.define( "showAsCoins", true );
+			useCustomName = builder
+					.translation( "config.cashcraft.use_custom_name" )
+					.define( "useCustomName", true );
+			cashSingular = builder
+					.translation( "config.cashcraft.cash_singular" )
+					.define("cashSingular","%s cash");
+			cashPlural = builder
+					.translation( "config.cashcraft.cash_plural" )
+					.define("cashPlural","%s cash");
+			//@formatter:on
+
+			builder.pop();
+
+			builder.comment( "Economy settings." ).push( "Economy" );
+
+			//@formatter:off
+			useTrade = builder
+					.translation( "config.cashcraft.show_as_coins" )
+					.define( "use_trade", true );
+			//@formatter:on
+
+			builder.pop();
+		}
 	}
 
-	/*
-	 * public Configuration getConfig()
-	 * {
-	 * return config;
-	 * }
-	 */
-
-	/**
-	 * Load the configuration values from the configuration file
-	 */
-	public void syncFromFile()
+	public static void register( ModLoadingContext context )
 	{
-		syncConfig( true, true );
-	}
-
-	/**
-	 * Save the GUI-altered values to disk
-	 */
-	public void syncFromGUI()
-	{
-		syncConfig( false, true );
-	}
-
-	/**
-	 * Save the configuration variables (fields) to disk
-	 */
-	public void syncFromFields()
-	{
-		syncConfig( false, false );
-	}
-
-	/**
-	 * Synchronize the three copies of the data
-	 * 1) loadConfigFromFile && readFieldsFromConfig -> initialize everything from the disk file.
-	 * 2) !loadConfigFromFile && readFieldsFromConfig --> copy everything from the config file (altered by GUI).
-	 * 3) !loadConfigFromFile && !readFieldsFromConfig --> copy everything from the native fields.
-	 *
-	 * @param loadConfigFromFile
-	 *            if true, load the config field from the configuration file on disk.
-	 * @param readFieldsFromConfig
-	 *            if true, reload the member variables from the config field.
-	 */
-	public void syncConfig( boolean loadConfigFromFile, boolean readFieldsFromConfig )
-	{
-		// Load config file
-		// if( loadConfigFromFile ) config.load();
-
-		// ----------------
-		// Define config properties
-		//@formatter:off
-		// General
-		/*final Property propMakeChange = config.get( Configuration.CATEGORY_GENERAL, "makeChange", true )
-				.setLanguageKey( "config.cashcraft.make_change" ).setRequiresMcRestart( true );*/
-		/*final Property propUseEconomy = config.get( Configuration.CATEGORY_GENERAL, "useEconomy", true )
-				.setLanguageKey( "config.cashcraft.use_economy" ).setRequiresMcRestart( true );*/
-		/*final Property propDoMobDrops = config.get( Configuration.CATEGORY_GENERAL, "doMobDrops", true )
-				.setLanguageKey( "config.cashcraft.mob_drops" ).setRequiresMcRestart( false );*/
-
-		// Display
-		/*final Property propShowAsCoins = config.get( CATEGORY_DISPLAY, "showAsCoins", false )
-				.setLanguageKey( "config.cashcraft.show_as_coins" ).setRequiresMcRestart( false );*/
-		/*final Property propUseCustomName = config.get( CATEGORY_DISPLAY, "useCustomName", false )
-				.setLanguageKey( "config.cashcraft.use_custom_name" ).setRequiresMcRestart( false );*/
-		/*final Property propCashSingular = config.get( CATEGORY_DISPLAY, "cashSingular", "%s cash" )
-				.setLanguageKey( "config.cashcraft.cash_singular" ).setRequiresMcRestart( false );*/
-		/*final Property propCashPlural = config.get( CATEGORY_DISPLAY, "cashPlural", "%s cash" )
-				.setLanguageKey( "config.cashcraft.cash_plural" ).setRequiresMcRestart( false );*/
-
-		// Economy
-		/*final Property propUseTrade = config.get( CATEGORY_ECONOMY, "useTrade", true )
-				.setLanguageKey( "config.cashcraft.use_trade" ).setRequiresMcRestart( false );*/
-		//@formatter:on
-		// ----------------
-
-		// ----------------
-		// Read properties
-		/*
-		 * if( readFieldsFromConfig )
-		 * {
-		 * // makeChange = propMakeChange.getBoolean();
-		 * useEconomy = propUseEconomy.getBoolean();
-		 * // doMobDrops = propDoMobDrops.getBoolean();
-		 * 
-		 * showAsCoins = propShowAsCoins.getBoolean();
-		 * useCustomName = propUseCustomName.getBoolean();
-		 * cashSingular = propCashSingular.getString();
-		 * cashPlural = propCashPlural.getString();
-		 * 
-		 * useEconomy = propUseEconomy.getBoolean();
-		 * }
-		 */
-		// ----------------
-
-		// ----------------
-		// Save properties to file
-		// propMakeChange.set( makeChange );
-		// propUseEconomy.set( useEconomy );
-		// propDoMobDrops.set( doMobDrops );
-
-		// propShowAsCoins.set( showAsCoins );
-		// propUseCustomName.set( useCustomName );
-		// propCashSingular.set( cashSingular );
-		// propCashPlural.set( cashPlural );
-
-		// propUseEconomy.set( useEconomy );
-		// ----------------
-
-		// if( config.hasChanged() ) config.save();
+		context.registerConfig( ModConfig.Type.COMMON, COMMON_SPEC );
 	}
 }

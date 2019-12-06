@@ -11,10 +11,10 @@ public class SyncConfigMessage// implements IMessage
 
 	public SyncConfigMessage()
 	{
-		showAsCoins = CashCraftConfig.showAsCoins;
-		useCustomName = CashCraftConfig.useCustomName;
-		cashSingular = CashCraftConfig.cashSingular;
-		cashPlural = CashCraftConfig.cashPlural;
+		showAsCoins = CashCraftConfig.COMMON.showAsCoins.get();
+		useCustomName = CashCraftConfig.COMMON.useCustomName.get();
+		cashSingular = CashCraftConfig.COMMON.cashSingular.get();
+		cashPlural = CashCraftConfig.COMMON.cashPlural.get();
 	}
 
 	public SyncConfigMessage( boolean showAsCoins, boolean useCustomName, String cashSingular, String cashPlural )
@@ -56,7 +56,7 @@ public class SyncConfigMessage// implements IMessage
 	/*
 	 * public static class Handler implements IMessageHandler< SyncConfigMessage, IMessage >
 	 * {
-	 * 
+	 *
 	 * @Override
 	 * public IMessage onMessage( SyncConfigMessage message, MessageContext ctx )
 	 * {
@@ -66,7 +66,7 @@ public class SyncConfigMessage// implements IMessage
 	 * final WorldClient worldClient = minecraft.world;
 	 * minecraft.addScheduledTask( new Runnable()
 	 * {
-	 * 
+	 *
 	 * @Override
 	 * public void run()
 	 * {
@@ -76,7 +76,7 @@ public class SyncConfigMessage// implements IMessage
 	 * }
 	 * return null;
 	 * }
-	 * 
+	 *
 	 * void processMessage( WorldClient worldClient, SyncConfigMessage message )
 	 * {
 	 * CashCraftConfig.showAsCoins = message.showAsCoins;
