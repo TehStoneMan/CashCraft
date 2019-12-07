@@ -18,6 +18,23 @@ version = "$minecraft_version-$version_major.$version_api.$version_minor.$versio
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+			resources {
+				include '**/**'
+				exclude '**/**.lang'
+				exclude '**/**.blend*'
+				exclude '**/**.obj'
+				exclude '**/**.mtl'
+				exclude '**/**.model'
+				exclude '**/**.xcf'
+			}
+		}
+	}
+}
+
 minecraft {
     mappings channel: 'snapshot', version: '20190912-1.14.3'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
@@ -62,6 +79,7 @@ dependencies
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.0'
+	// 28.1.56 - Config Gui
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -103,7 +121,7 @@ processResources {
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
-        attributes([
+        attributes ([
             "Specification-Title": "CashCraft",
             "Specification-Vendor": "TehStoneMan",
             "Specification-Version": "1", // We are version 1 of ourselves

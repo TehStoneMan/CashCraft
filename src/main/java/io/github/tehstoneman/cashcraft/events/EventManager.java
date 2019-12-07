@@ -1,7 +1,7 @@
 package io.github.tehstoneman.cashcraft.events;
 
-import java.util.Random;
-
+import io.github.tehstoneman.cashcraft.CashCraft;
+import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import net.minecraft.entity.Entity;
@@ -24,24 +24,22 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.MOD )
+@Mod.EventBusSubscriber( modid = ModInfo.MOD_ID )
 public class EventManager
 {
-	// private static Minecraft mc = Minecraft.getMinecraft();
-	private final Random r = new Random();
-
 	@SubscribeEvent
 	public void onLivingDropsEvent( LivingDropsEvent event )
 	{
+		CashCraft.LOGGER.info( "onLivingDropsEvent ==== {} ====", event );
 		if( !CashCraftConfig.COMMON.doMobDrops.get() )
 			return;
 
 		// Calculate drop chance
-		if( r.nextInt( 4 + event.getLootingLevel() ) < 3 )
+		if( CashCraft.RANDOM.nextInt( 4 + event.getLootingLevel() ) < 3 )
 			return;
 
 		// Calculate loot value
-		final int value = r.nextInt( 1 + event.getLootingLevel() );
+		final int value = CashCraft.RANDOM.nextInt( 1 + event.getLootingLevel() );
 
 		final Entity entity = event.getEntity();
 		final World world = entity.getEntityWorld();
@@ -68,7 +66,7 @@ public class EventManager
 
 		if( entity instanceof EnderDragonEntity || entity instanceof WitherEntity )
 		{
-			final int maxDrops = 5 + r.nextInt( 5 + 5 * event.getLootingLevel() );
+			final int maxDrops = 5 + CashCraft.RANDOM.nextInt( 5 + 5 * event.getLootingLevel() );
 			for( int i = 0; i < maxDrops; i++ )
 			{
 				final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.NOTE_ONE, 1 ) );
