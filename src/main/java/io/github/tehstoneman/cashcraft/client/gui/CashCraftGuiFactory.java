@@ -1,22 +1,20 @@
 package io.github.tehstoneman.cashcraft.client.gui;
 
-import java.util.Set;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraftforge.fml.client.IModGuiFactory;
-
-public class CashCraftGuiFactory implements IModGuiFactory
+public class CashCraftGuiFactory// implements IModGuiFactory
 {
-	@Override
-	public void initialize( Minecraft minecraftInstance )
-	{}
+	/*
+	 * @Override
+	 * public void initialize( Minecraft minecraftInstance )
+	 * {}
+	 */
 
-	@Override
-	public boolean hasConfigGui()
-	{
-		return true;
-	}
+	/*
+	 * @Override
+	 * public boolean hasConfigGui()
+	 * {
+	 * return true;
+	 * }
+	 */
 
 	/*
 	 * @Override
@@ -26,18 +24,22 @@ public class CashCraftGuiFactory implements IModGuiFactory
 	 * }
 	 */
 
-	@Override
-	public Set< RuntimeOptionCategoryElement > runtimeGuiCategories()
-	{
-		return null;
-	}
+	/*
+	 * @Override
+	 * public Set< RuntimeOptionCategoryElement > runtimeGuiCategories()
+	 * {
+	 * return null;
+	 * }
+	 */
 
-	@Override
-	public Screen createConfigGui( Screen parentScreen )
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * @Override
+	 * public Screen createConfigGui( Screen parentScreen )
+	 * {
+	 * // TODO Auto-generated method stub
+	 * return null;
+	 * }
+	 */
 
 	/*
 	 * private static class CashCraftConfigGui extends GuiConfig
@@ -46,20 +48,20 @@ public class CashCraftGuiFactory implements IModGuiFactory
 	 * {
 	 * super( parentScreen, getConfigElements(), ModInfo.MODID, false, false, CashCraft.proxy.localize( "config.cashcraft.config.title" ) );
 	 * }
-	 * 
+	 *
 	 * private static List< IConfigElement > getConfigElements()
 	 * {
 	 * final List< IConfigElement > listConfigElements = new ArrayList<>();
-	 * 
+	 *
 	 * final Configuration config = CashCraft.config.getConfig();
 	 * final ConfigElement generalConfig = new ConfigElement( config.getCategory( Configuration.CATEGORY_GENERAL ) );
 	 * final ConfigElement displayConfig = new ConfigElement( config.getCategory( CashCraftConfig.CATEGORY_DISPLAY ) );
 	 * final ConfigElement economyConfig = new ConfigElement( config.getCategory( CashCraftConfig.CATEGORY_ECONOMY ) );
-	 * 
+	 *
 	 * listConfigElements.addAll( generalConfig.getChildElements() );
 	 * listConfigElements.add( new DummyCategoryElement( "display", "config.cashcraft.config.display", displayConfig.getChildElements() ) );
 	 * listConfigElements.add( new DummyCategoryElement( "economy", "config.cashcraft.config.economy", economyConfig.getChildElements() ) );
-	 * 
+	 *
 	 * return listConfigElements;
 	 * }
 	 * }

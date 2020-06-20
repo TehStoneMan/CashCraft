@@ -12,45 +12,40 @@ public interface IPlayerWallet
 	/**
 	 * Return the total amount of cash held by a player.
 	 *
-	 * @param player
-	 * @return
+	 * @return The value contained by this wallet
 	 */
 	public long getValue();
 
 	/**
 	 * Sets the wallet to a specified amount.
 	 *
-	 * @param amount
+	 * @param value The amount to set this wallet to
 	 */
 	public void setValue( long value );
 
-	/**
-	 * Add some cash to the player's wallet (inventory)
-	 *
-	 * @param player
-	 * @param amount
+	/** Add some cash to the player's wallet (inventory)
+	 * 
+	 * @param value The amount to add
 	 */
 	public void deposit( long value );
 
 	/**
 	 * Withdraws the specified amount from the wallet
 	 *
-	 * @param amount
-	 * @return
+	 * @param value The amount to withdraw
+	 * @return The total withdrawn
 	 */
 	public boolean withdraw( long value );
 
 	/**
 	 * Remove all cash from the player's wallet (inventory)
-	 *
-	 * @param player
 	 */
 	public void empty();
 
 	/**
 	 * Returns a string representation of this wallet's contents
 	 *
-	 * @return
+	 * @return The value in string format
 	 */
 	@Override
 	public String toString();

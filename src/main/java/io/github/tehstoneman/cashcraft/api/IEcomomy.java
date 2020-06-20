@@ -17,7 +17,7 @@ public interface IEcomomy
 	 * WARNING:
 	 * API calls are not guaranteed to be safe if this is ignored.
 	 *
-	 * @return
+	 * @return TRUE if enabled
 	 */
 	public Boolean isEnabled();
 
@@ -25,7 +25,8 @@ public interface IEcomomy
 	 * Get the wallet for a player
 	 *
 	 * @param player
-	 * @return
+	 *            The player to get the wallet of
+	 * @return The wallet of the requested player
 	 */
 	public IPlayerWallet getWallet( PlayerEntity player );
 
@@ -33,7 +34,9 @@ public interface IEcomomy
 	 * Get the singular or plural term of the currency used
 	 *
 	 * @param plural
+	 *            TRUE if plural
 	 * @param longFormat
+	 *            TRUE if long format
 	 * @return Untranslated name of currency
 	 */
 	public String getCurrencyName( boolean plural, boolean longFormat );
@@ -42,7 +45,8 @@ public interface IEcomomy
 	 * Returns the highest stack of cash for the given amount
 	 *
 	 * @param amount
-	 * @return
+	 *            Requested amount
+	 * @return ItemStack containing the highest value of cash that fits in the amount
 	 */
 	public ItemStack getCash( long amount );
 
@@ -50,7 +54,8 @@ public interface IEcomomy
 	 * Returns the value of the given stack
 	 *
 	 * @param itemStack
-	 * @return
+	 *            The ItemStack to get the value of
+	 * @return The value of the given ItemStack
 	 */
 	public long getValue( ItemStack itemStack );
 
@@ -58,7 +63,8 @@ public interface IEcomomy
 	 * Display amount as a string with the long form currency attached
 	 *
 	 * @param amount
-	 * @return
+	 *            The amount to display
+	 * @return Amount formatted as string
 	 */
 	public String toString( long amount );
 
@@ -66,8 +72,10 @@ public interface IEcomomy
 	 * Display amount as a string with choice of long or short form currency attached
 	 *
 	 * @param amount
+	 *            The amount to display
 	 * @param longFormat
-	 * @return
+	 *            TRUE is long format
+	 * @return Amount formatted as string
 	 */
 	public String toString( long amount, boolean longFormat );
 }

@@ -16,7 +16,7 @@ public interface ITrade
 	 * Check if the trading module is enabled
 	 * Trade API calls will be ignored if this is false.
 	 *
-	 * @return
+	 * @return TRUE if enebaled
 	 */
 	public Boolean isEnabled();
 

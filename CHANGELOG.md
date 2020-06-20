@@ -11,7 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [5.0.0.1] - Unreleased
+## [6.0.0.0] - 2020-06-20
+### Changed
+- Updated to Minecraft 1.15.2
+
+## [5.0.0.0] - 2019-12-07
 ### Changed
 - Updated to Minecraft 1.14.4
 
