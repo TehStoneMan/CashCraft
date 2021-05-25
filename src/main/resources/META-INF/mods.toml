@@ -1,6 +1,8 @@
 modLoader="javafml"
-loaderVersion="[25,)"
+loaderVersion="[36,)"
+license="MIT"
 issueTrackerURL="https://github.com/TehStoneMan/CashCraft/issues"
+
 [[mods]]
 modId="cashcraft"
 version="${version}"
@@ -10,3 +12,10 @@ displayURL="http://minecraft.curseforge.com/projects/cash-craft"
 logoFile="CashCraftLogo.png"
 authors="TehStoneMan"
 description='''Add a physical currency to your game'''
+
+[[dependencies.cashcraft]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.0.4,)"
+    ordering="NONE"
+    side="BOTH"

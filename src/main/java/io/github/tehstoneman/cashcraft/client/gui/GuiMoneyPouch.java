@@ -2,6 +2,8 @@ package io.github.tehstoneman.cashcraft.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import io.github.tehstoneman.cashcraft.ModInfo;
 import io.github.tehstoneman.cashcraft.common.inventory.ContainerMoneyPouch;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -23,24 +25,18 @@ public class GuiMoneyPouch extends ContainerScreen< ContainerMoneyPouch >
 	}
 
 	@Override
-	public void render( int mouseX, int mouseY, float partialTicks )
+	public void render(MatrixStack matrixStack,  int mouseX, int mouseY, float partialTicks )
 	{
-		super.render( mouseX, mouseY, partialTicks );
-		renderHoveredToolTip( mouseX, mouseY );
+		renderBackground( matrixStack );
+		super.render( matrixStack,mouseX, mouseY, partialTicks );
+		renderHoveredTooltip(matrixStack, mouseX, mouseY );
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer( int mouseX, int mouseY )
-	{
-		font.drawString( title.getFormattedText(), 8, 6, 0x404040 );
-		font.drawString( playerInventory.getDisplayName().getFormattedText(), 8, ySize - 96 + 2, 0x404040 );
-	}
-
-	@Override
-	protected void drawGuiContainerBackgroundLayer( float partialTicks, int mouseX, int mouseY )
+	protected void drawGuiContainerBackgroundLayer( MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY )
 	{
 		GL11.glColor4f( 1.0F, 1.0F, 1.0F, 1.0F );
 		minecraft.getTextureManager().bindTexture( GUI_MONEYPOUCH );
-		this.blit( guiLeft, guiTop, 0, 0, xSize, ySize );
+		this.blit(matrixStack, guiLeft, guiTop, 0, 0, xSize, ySize );
 	}
 }
