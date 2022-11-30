@@ -1,9 +1,9 @@
-package io.github.tehstoneman.cashcraft.common.inventory;
+package io.github.tehstoneman.cashcraft.world.inventory;
 
 import javax.annotation.Nonnull;
 
-import io.github.tehstoneman.cashcraft.common.item.ItemCash;
-import net.minecraft.item.ItemStack;
+import io.github.tehstoneman.cashcraft.world.item.CashItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -16,8 +16,8 @@ class CoinSlotHandler extends SlotItemHandler
 	}
 
 	@Override
-	public boolean isItemValid( @Nonnull ItemStack stack )
+	public boolean mayPlace( @Nonnull ItemStack stack )
 	{
-		return stack.isEmpty() || stack.getItem() instanceof ItemCash;
+		return stack.isEmpty() || stack.getItem() instanceof CashItem;
 	}
 }

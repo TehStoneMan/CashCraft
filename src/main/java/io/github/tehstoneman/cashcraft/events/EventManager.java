@@ -2,118 +2,90 @@ package io.github.tehstoneman.cashcraft.events;
 
 import io.github.tehstoneman.cashcraft.CashCraft;
 import io.github.tehstoneman.cashcraft.ModInfo;
-import io.github.tehstoneman.cashcraft.common.item.CashCraftItems;
-import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.BlazeEntity;
-import net.minecraft.entity.monster.CaveSpiderEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.EndermanEntity;
-import net.minecraft.entity.monster.GhastEntity;
-import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.monster.WitchEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import io.github.tehstoneman.cashcraft.world.item.CashCraftItems;
+import io.github.tehstoneman.cashcraft.world.item.CashItem;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.items.ItemStackHandler;
 
-@Mod.EventBusSubscriber( modid = ModInfo.MOD_ID )
+//@Mod.EventBusSubscriber( modid = ModInfo.MOD_ID, bus = Bus.FORGE )
 public class EventManager
 {
-	@SubscribeEvent
-	public void onLivingDropsEvent( LivingDropsEvent event )
-	{
-		CashCraft.LOGGER.info( "onLivingDropsEvent ==== {} ====", event );
-		if( !CashCraftConfig.COMMON.doMobDrops.get() )
-			return;
-
-		// Calculate drop chance
-		if( CashCraft.RANDOM.nextInt( 4 + event.getLootingLevel() ) < 3 )
-			return;
-
-		// Calculate loot value
-		final int value = CashCraft.RANDOM.nextInt( 1 + event.getLootingLevel() );
-
-		final Entity entity = event.getEntity();
-		final World world = entity.getEntityWorld();
-		final BlockPos pos = entity.getPosition();
-
-		if( entity instanceof CaveSpiderEntity || entity instanceof SkeletonEntity || entity instanceof SpiderEntity
-				|| entity instanceof ZombieEntity )
-		{
-			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_ONE, 1 ) );
-			event.getDrops().add( itemDrop );
-		}
-
-		if( entity instanceof BlazeEntity || entity instanceof CreeperEntity || entity instanceof EndermanEntity || entity instanceof WitchEntity )
-		{
-			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_TWO, 1 ) );
-			event.getDrops().add( itemDrop );
-		}
-
-		if( entity instanceof GhastEntity )
-		{
-			final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.COIN_FIVE, 1 ) );
-			event.getDrops().add( itemDrop );
-		}
-
-		if( entity instanceof EnderDragonEntity || entity instanceof WitherEntity )
-		{
-			final int maxDrops = 5 + CashCraft.RANDOM.nextInt( 5 + 5 * event.getLootingLevel() );
-			for( int i = 0; i < maxDrops; i++ )
-			{
-				final ItemEntity itemDrop = new ItemEntity( world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack( CashCraftItems.NOTE_ONE, 1 ) );
-				event.getDrops().add( itemDrop );
-			}
-		}
-	}
-
 	/*
 	 * @SubscribeEvent
-	 * public void onPlayerJoinEvent( PlayerLoggedInEvent event )
+	 * public static void onItemPickupEvent( EntityItemPickupEvent event )
 	 * {
-	 * if( !event.player.world.isRemote )
+	 * final Player player = event.getEntity();
+	 * final Level level = player.getLevel();
+	 * if( !level.isClientSide )
 	 * {
-	 * final SyncConfigMessage message = new SyncConfigMessage( CashCraftConfig.showAsCoins, CashCraftConfig.useCustomName,
-	 * CashCraftConfig.cashSingular, CashCraftConfig.cashPlural );
-	 * CashCraft.simpleNetworkWrapper.sendTo( message, (EntityPlayerMP)event.player );
-	 * }
-	 * }
-	 */
-
-	/*
-	 * @SubscribeEvent
-	 * public void onItemPickupEvent( ItemPickupEvent event )
+	 * final ItemEntity itemEntity = event.getItem();
+	 * ItemStack itemStack = itemEntity.getItem();
+	 * if( itemStack.getItem() instanceof CashItem )
 	 * {
-	 * if( !event.player.worldObj.isRemote )
+	 * final Inventory inventory = player.getInventory();
+	 * final ItemStack lookFor = new ItemStack( CashCraftItems.MONEY_POUCH.get() );
+	 * if( inventory.contains( lookFor ) )
 	 * {
-	 * ItemStack itemStack = event.pickedUp.getItemEntity();
-	 * if( itemStack.getItem() instanceof ItemCash )
-	 * {
-	 * EntityPlayer player = event.player;
-	 * if( player.inventory.hasItemStack( new ItemStack( CashCraftItems.itemMoneyPouch ) ) )
-	 * {
-	 * ItemStack lookFor = new ItemStack( CashCraftItems.itemMoneyPouch );
 	 * int index = 0;
-	 * for ( int i = 0 ; i < player.inventory.getSizeInventory() ; i++ )
+	 * for( int i = 0; i < inventory.items.size(); ++i )
 	 * {
-	 * ItemStack itemStack1 = player.inventory.getStackInSlot( i );
-	 * if (itemStack1 != null && itemStack1.isItemEqual(lookFor))
+	 * final ItemStack testStack = inventory.items.get( i );
+	 * if( !testStack.isEmpty() && ItemStack.isSame( lookFor, testStack ) )
 	 * {
 	 * index = i;
+	 * break;
 	 * }
 	 * }
-	 * Logger.getLogger( ModInfo.MODID ).info( "Money pouch found in slot " + index );
+	 * CashCraft.LOGGER.info( "Money pouch found in slot " + index );
+	 * final ItemStack moneyPouch = inventory.items.get( index );
+	 * final ItemStackHandler inventoryMoneyPouch = (ItemStackHandler)moneyPouch.getCapability( ForgeCapabilities.ITEM_HANDLER, null )
+	 * .orElse( null );
+	 * CashCraft.LOGGER.info( "Money pouch contains " + inventoryMoneyPouch );
+	 * 
+	 * itemStack = moveItemStackTo( itemStack, 0, inventoryMoneyPouch.getSlots(), inventoryMoneyPouch );
+	 * CashCraft.LOGGER.info( "Item stack " + itemStack.isEmpty() );
+	 * 
+	 * if( itemStack.isEmpty() )
+	 * {
+	 * CashCraft.LOGGER.info( "Event isCancelable " + event.isCancelable() + " : hasResult " + event.hasResult() );
+	 * // event.setCanceled( true );
+	 * event.setResult( Result.DENY );
 	 * }
 	 * }
 	 * }
+	 * }
+	 * }
+	 * 
+	 * protected static ItemStack moveItemStackTo( ItemStack itemStack, int indexFrom, int indexTo, ItemStackHandler itemStackHandler )
+	 * {
+	 * int i = indexFrom;
+	 * 
+	 * if( itemStack.isStackable() )
+	 * while( !itemStack.isEmpty() )
+	 * {
+	 * if( i >= indexTo )
+	 * break;
+	 * 
+	 * itemStack = itemStackHandler.insertItem( i, itemStack, false );
+	 * 
+	 * if( itemStack.isEmpty() )
+	 * break;
+	 * 
+	 * ++i;
+	 * }
+	 * 
+	 * return itemStack;
 	 * }
 	 */
+
 }

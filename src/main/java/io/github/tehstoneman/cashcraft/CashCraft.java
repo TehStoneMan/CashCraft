@@ -6,46 +6,46 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import io.github.tehstoneman.cashcraft.api.CashCraftAPI;
-import io.github.tehstoneman.cashcraft.common.item.CashCraftItemGroup;
+import io.github.tehstoneman.cashcraft.common.loot.CashCraftLoot;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
 import io.github.tehstoneman.cashcraft.economy.Economy;
 import io.github.tehstoneman.cashcraft.economy.Trade;
-import io.github.tehstoneman.cashcraft.proxy.ClientProxy;
-import io.github.tehstoneman.cashcraft.proxy.IProxy;
-import io.github.tehstoneman.cashcraft.proxy.ServerProxy;
-import net.minecraft.item.ItemGroup;
-import net.minecraftforge.fml.DistExecutor;
+import io.github.tehstoneman.cashcraft.world.inventory.CashCraftMenuTypes;
+import io.github.tehstoneman.cashcraft.world.item.CashCraftCreativeModeTab;
+import io.github.tehstoneman.cashcraft.world.item.CashCraftItems;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkRegistry;
 
 @Mod( ModInfo.MOD_ID )
 public class CashCraft
 {
-	public static final Logger		LOGGER				= LogManager.getLogger( ModInfo.MOD_ID );
-	public static final ItemGroup	ITEM_GROUP			= new CashCraftItemGroup();
-	public static final IProxy		PROXY				= DistExecutor.<IProxy> runForDist( () -> ClientProxy::new, () -> ServerProxy::new );
+	public static final Logger			LOGGER				= LogManager.getLogger( ModInfo.MOD_ID );
+	public static final CreativeModeTab	CREATIVE_MODE_TAB	= new CashCraftCreativeModeTab();
 
-	public static final Random		RANDOM				= new Random();
+	public static final Random RANDOM = new Random();
 
 	public CashCraft()
 	{
+		// Register configs
 		CashCraftConfig.register( ModLoadingContext.get() );
+
 		// Register network messages
-		// simpleNetworkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel( ModInfo.MODID );
-		// simpleNetworkWrapper.registerMessage( SyncConfigMessage.Handler.class, SyncConfigMessage.class, MESSAGE_ID_UPDATE, Side.CLIENT );
+		//simpleNetworkWrapper = NetworkRegistry.newSimpleChannel( ModInfo.MOD_ID );
+		//simpleNetworkWrapper.registerMessage( SyncConfigMessage.Handler.class, SyncConfigMessage.class, MESSAGE_ID_UPDATE, Side.CLIENT );
 
 		// Initialize API
-		CashCraftAPI.economy = new Economy();
-		CashCraftAPI.trade = new Trade();
+		CashCraftAPI.economy	= new Economy();
+		CashCraftAPI.trade		= new Trade();
 
-		// Register the setup method for modloading
-		FMLJavaModLoadingContext.get().getModEventBus().addListener( this::setup );
-	}
+		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-	public void setup( FMLCommonSetupEvent event )
-	{
-		PROXY.setup( event );
+		// CashCraftBlocks.REGISTERY.register( modEventBus );
+		CashCraftItems.REGISTERY.register( modEventBus );
+		CashCraftMenuTypes.REGISTERY.register( modEventBus );
+		CashCraftLoot.REGISTERY.register( modEventBus );
 	}
 }

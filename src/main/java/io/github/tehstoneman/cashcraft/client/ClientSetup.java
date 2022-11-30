@@ -1,7 +1,22 @@
 package io.github.tehstoneman.cashcraft.client;
 
-public class ClientEvents
+import io.github.tehstoneman.cashcraft.ModInfo;
+import io.github.tehstoneman.cashcraft.client.gui.screens.inventory.MoneyPouchScreen;
+import io.github.tehstoneman.cashcraft.world.inventory.CashCraftMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+@Mod.EventBusSubscriber( modid = ModInfo.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD )
+public class ClientSetup
 {
+	@SubscribeEvent
+	public static void init( final FMLClientSetupEvent event )
+	{
+		MenuScreens.register( CashCraftMenuTypes.MONEY_POUCH.get(), MoneyPouchScreen::new );
+	}
 	// @SubscribeEvent
 	/*
 	 * public void onRegisterModels( ModelRegistryEvent event )
@@ -27,7 +42,7 @@ public class ClientEvents
 	/*
 	 * private final StateMapperBase propertyStringMapper = new StateMapperBase()
 	 * {
-	 * 
+	 *
 	 * @Override
 	 * protected ModelResourceLocation getModelResourceLocation( IBlockState state )
 	 * {
@@ -50,7 +65,7 @@ public class ClientEvents
 	 * private void registerBlockItemModelForMeta( IBlockState state, int metadata )
 	 * {
 	 * final Item item = Item.getItemFromBlock( state.getBlock() );
-	 * 
+	 *
 	 * if( item != Items.AIR )
 	 * registerItemModel( item, metadata, propertyStringMapper.getPropertyString( state.getProperties() ) );
 	 * }
@@ -60,7 +75,7 @@ public class ClientEvents
 	 * private void registerItemModel( Block block )
 	 * {
 	 * final Item item = Item.getItemFromBlock( block );
-	 * 
+	 *
 	 * if( item != Items.AIR )
 	 * registerItemModel( item );
 	 * }
@@ -70,7 +85,7 @@ public class ClientEvents
 	 * private void registerItemModel( Block block, int metadata, String modelLocation )
 	 * {
 	 * final Item item = Item.getItemFromBlock( block );
-	 * 
+	 *
 	 * if( item != Items.AIR )
 	 * registerItemModel( item, metadata, modelLocation );
 	 * }

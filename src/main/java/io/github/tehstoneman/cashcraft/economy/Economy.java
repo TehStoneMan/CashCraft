@@ -1,59 +1,15 @@
 package io.github.tehstoneman.cashcraft.economy;
 
 import io.github.tehstoneman.cashcraft.api.IEcomomy;
-import io.github.tehstoneman.cashcraft.common.item.ItemCash;
 import io.github.tehstoneman.cashcraft.config.CashCraftConfig;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import io.github.tehstoneman.cashcraft.world.item.CashItem;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class Economy implements IEcomomy
 {
-	@Override
-	public Boolean isEnabled()
-	{
-		return CashCraftConfig.COMMON.useEconomy.get();
-	}
-
-	@Override
-	public PlayerWallet getWallet( PlayerEntity player )
-	{
-		if( player != null )
-			return new PlayerWallet( player );
-		return null;
-	}
-
-	@Override
-	public String getCurrencyName( boolean plural, boolean longFormat )
-	{
-		if( plural )
-			if( !CashCraftConfig.COMMON.useCustomName.get() )
-				if( longFormat )
-					if( CashCraftConfig.COMMON.showAsCoins.get() )
-						return "economy.cashcraft.coin_plural.long";
-					else
-						return "economy.cashcraft.cash_plural.long";
-				else if( CashCraftConfig.COMMON.showAsCoins.get() )
-					return "economy.cashcraft.coin_plural.short";
-				else
-					return "economy.cashcraft.cash_plural.short";
-			else
-				return CashCraftConfig.COMMON.cashPlural.get();
-		else if( !CashCraftConfig.COMMON.useCustomName.get() )
-			if( longFormat )
-				if( CashCraftConfig.COMMON.showAsCoins.get() )
-					return "economy.cashcraft.coin_singular.long";
-				else
-					return "economy.cashcraft.cash_singular.long";
-			else if( CashCraftConfig.COMMON.showAsCoins.get() )
-				return "economy.cashcraft.coin_singular.short";
-			else
-				return "economy.cashcraft.cash_singular.short";
-		else
-			return CashCraftConfig.COMMON.cashSingular.get();
-	}
-
 	@Override
 	public ItemStack getCash( long amount )
 	{
@@ -72,17 +28,61 @@ public class Economy implements IEcomomy
 	}
 
 	@Override
+	public String getCurrencyName( boolean plural, boolean longFormat )
+	{
+		if( plural )
+		{
+			if( CashCraftConfig.useCustomName.get() )
+				return CashCraftConfig.cashPlural.get();
+			if( longFormat )
+			{
+				if( CashCraftConfig.showAsCoins.get() )
+					return "economy.cashcraft.coin_plural.long";
+				return "economy.cashcraft.cash_plural.long";
+			}
+			if( CashCraftConfig.showAsCoins.get() )
+				return "economy.cashcraft.coin_plural.short";
+			return "economy.cashcraft.cash_plural.short";
+		}
+		if( CashCraftConfig.useCustomName.get() )
+			return CashCraftConfig.cashSingular.get();
+		if( longFormat )
+		{
+			if( CashCraftConfig.showAsCoins.get() )
+				return "economy.cashcraft.coin_singular.long";
+			return "economy.cashcraft.cash_singular.long";
+		}
+		if( CashCraftConfig.showAsCoins.get() )
+			return "economy.cashcraft.coin_singular.short";
+		return "economy.cashcraft.cash_singular.short";
+	}
+
+	@Override
 	public long getValue( ItemStack itemStack )
 	{
 		final Item item = itemStack.getItem();
-		if( item instanceof ItemCash )
+		if( item instanceof CashItem )
 		{
-			final int count = itemStack.getCount();
-			final int value = ( (ItemCash)item ).getValue();
+			final int	count	= itemStack.getCount();
+			final int	value	= ( (CashItem)item ).getValue();
 
 			return count * value;
 		}
 		return 0;
+	}
+
+	@Override
+	public PlayerWallet getWallet( Player player )
+	{
+		if( player != null )
+			return new PlayerWallet( player );
+		return null;
+	}
+
+	@Override
+	public Boolean isEnabled()
+	{
+		return CashCraftConfig.useEconomy.get();
 	}
 
 	@Override
@@ -94,13 +94,10 @@ public class Economy implements IEcomomy
 	@Override
 	public String toString( long amount, boolean longFormat )
 	{
-		if( CashCraftConfig.COMMON.showAsCoins.get() )
-			return I18n.format( getCurrencyName( amount != 1, longFormat ), String.format( "%d", amount ) );
-		else
-		{
-			final long numerator = amount / 100;
-			final long demoninator = amount % 100;
-			return I18n.format( getCurrencyName( numerator != 1, longFormat ), String.format( "%d.%02d", numerator, demoninator ) );
-		}
+		if( CashCraftConfig.showAsCoins.get() )
+			return I18n.get( getCurrencyName( amount != 1, longFormat ), String.format( "%d", amount ) );
+		final long	numerator	= amount / 100;
+		final long	demoninator	= amount % 100;
+		return I18n.get( getCurrencyName( numerator != 1, longFormat ), String.format( "%d.%02d", numerator, demoninator ) );
 	}
 }

@@ -1,7 +1,7 @@
 package io.github.tehstoneman.cashcraft.api;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * Class that contains the basic Cash API
@@ -28,7 +28,7 @@ public interface IEcomomy
 	 *            The player to get the wallet of
 	 * @return The wallet of the requested player
 	 */
-	public IPlayerWallet getWallet( PlayerEntity player );
+	public IPlayerWallet getWallet( Player player );
 
 	/**
 	 * Get the singular or plural term of the currency used

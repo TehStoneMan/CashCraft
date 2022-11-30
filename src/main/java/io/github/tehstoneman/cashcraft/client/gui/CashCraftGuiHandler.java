@@ -4,7 +4,7 @@ public class CashCraftGuiHandler// implements IGuiHandler
 {
 	/*
 	 * @Override
-	 * public Object getServerGuiElement( int ID, PlayerEntity player, World world, int x, int y, int z )
+	 * public Object getServerGuiElement( int ID, PlayerEntity player, Level world, int x, int y, int z )
 	 * {
 	 * if( ID == CashCraft.GUI_MONEY_POUCH )
 	 * {
@@ -19,7 +19,7 @@ public class CashCraftGuiHandler// implements IGuiHandler
 
 	/*
 	 * @Override
-	 * public Object getClientGuiElement( int ID, PlayerEntity player, World world, int x, int y, int z )
+	 * public Object getClientGuiElement( int ID, PlayerEntity player, Level world, int x, int y, int z )
 	 * {
 	 * if( ID == CashCraft.GUI_MONEY_POUCH )
 	 * {

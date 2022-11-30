@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "entries":
+  [
+    "cashcraft:coin_drop_from_blaze",
+    "cashcraft:coin_drop_from_cave_spider",
+    "cashcraft:coin_drop_from_creeper",
+    "cashcraft:coin_drop_from_enderman",
+    "cashcraft:coin_drop_from_ghast",
+    "cashcraft:coin_drop_from_skeleton",
+    "cashcraft:coin_drop_from_spider",
+    "cashcraft:coin_drop_from_witch",
+    "cashcraft:coin_drop_from_zombie"
+  ]
+}

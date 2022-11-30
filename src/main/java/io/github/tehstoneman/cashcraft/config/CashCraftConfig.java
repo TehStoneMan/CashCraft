@@ -6,78 +6,54 @@ import net.minecraftforge.fml.config.ModConfig;
 
 public class CashCraftConfig
 {
-	private static final ForgeConfigSpec.Builder	COMMON_BUILDER	= new ForgeConfigSpec.Builder();
-
-	public static Common							COMMON			= new Common( COMMON_BUILDER );
-	// public static Client CLIENT = new Common( CLIENT_BUILDER );
-	// public static Server SERVER = new Common( SERVER_BUILDER );
-
-	private static ForgeConfigSpec					COMMON_SPEC		= COMMON_BUILDER.build();
-
-	public static class Common
+	public static class Server
 	{
-		public ForgeConfigSpec.BooleanValue				makeChange;
-		public ForgeConfigSpec.BooleanValue				useEconomy;
-		public ForgeConfigSpec.BooleanValue				doMobDrops;
-
-		public ForgeConfigSpec.BooleanValue				showAsCoins;
-		public ForgeConfigSpec.BooleanValue				useCustomName;
-		public ForgeConfigSpec.ConfigValue< String >	cashSingular;
-		public ForgeConfigSpec.ConfigValue< String >	cashPlural;
-
-		public ForgeConfigSpec.BooleanValue				useTrade;
-
-		public Common( ForgeConfigSpec.Builder builder )
+		public Server( ForgeConfigSpec.Builder builder )
 		{
-			builder.comment( "General settings." ).push( "General" );
+			builder.push( "General" );
 
-			//@formatter:off
-			makeChange = builder
-					.translation( "config.cashcraft.make_change" )
-					.define( "makeChange", true );
-			useEconomy = builder
-					.translation( "config.cashcraft.use_economy" )
-					.define( "useEconomy", true );
-			doMobDrops = builder
-					.translation( "config.cashcraft.mob_drops" )
-					.define( "doMobDrops", true );
-			//@formatter:on
+			makeChange	= builder.translation( "config.cashcraft.make_change" ).define( "make_change", true );
+			useEconomy	= builder.translation( "config.cashcraft.use_economy" ).define( "use_economy", true );
+			doMobDrops	= builder.translation( "config.cashcraft.mob_drops" ).define( "mob_drops", true );
 
 			builder.pop();
 
-			builder.comment( "Display settings." ).push( "Display" );
+			builder.push( "Display" );
 
-			//@formatter:off
-			showAsCoins = builder
-					.translation( "config.cashcraft.show_as_coins" )
-					.define( "showAsCoins", true );
-			useCustomName = builder
-					.translation( "config.cashcraft.use_custom_name" )
-					.define( "useCustomName", true );
-			cashSingular = builder
-					.translation( "config.cashcraft.cash_singular" )
-					.define("cashSingular","%s cash");
-			cashPlural = builder
-					.translation( "config.cashcraft.cash_plural" )
-					.define("cashPlural","%s cash");
-			//@formatter:on
+			showAsCoins		= builder.translation( "config.cashcraft.show_as_coins" ).define( "show_as_coins", true );
+			useCustomName	= builder.translation( "config.cashcraft.use_custom_name" ).define( "use_custom_name", true );
+			cashSingular	= builder.translation( "config.cashcraft.cash_singular" ).define( "cash_singular", "%s cash" );
+			cashPlural		= builder.translation( "config.cashcraft.cash_plural" ).define( "cash_plural", "%s cash" );
 
 			builder.pop();
 
-			builder.comment( "Economy settings." ).push( "Economy" );
+			builder.push( "Economy" );
 
-			//@formatter:off
-			useTrade = builder
-					.translation( "config.cashcraft.show_as_coins" )
-					.define( "use_trade", true );
-			//@formatter:on
+			useTrade = builder.translation( "config.cashcraft.show_as_coins" ).define( "use_trade", true );
 
 			builder.pop();
 		}
 	}
 
+	public static ForgeConfigSpec.BooleanValue	makeChange;
+	public static ForgeConfigSpec.BooleanValue	useEconomy;
+	public static ForgeConfigSpec.BooleanValue	doMobDrops;
+
+	public static ForgeConfigSpec.BooleanValue			showAsCoins;
+	public static ForgeConfigSpec.BooleanValue			useCustomName;
+	public static ForgeConfigSpec.ConfigValue< String >	cashSingular;
+	public static ForgeConfigSpec.ConfigValue< String >	cashPlural;
+
+	public static ForgeConfigSpec.BooleanValue useTrade;
+
+	private static final ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
+
+	public static Server SERVER = new Server( SERVER_BUILDER );
+
+	private static ForgeConfigSpec SERVER_SPEC = SERVER_BUILDER.build();
+
 	public static void register( ModLoadingContext context )
 	{
-		context.registerConfig( ModConfig.Type.COMMON, COMMON_SPEC );
+		context.registerConfig( ModConfig.Type.SERVER, SERVER_SPEC );
 	}
 }
